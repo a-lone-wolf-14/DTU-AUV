@@ -1,0 +1,518 @@
+/* ============================================================
+   TEAM PAGE — OVERLAY & CARD ENHANCEMENT
+   team.css  –  DTU AUV
+   ============================================================ */
+
+/* ── Cursor upgrade on cards ─────────────────────────────── */
+.team-card { cursor: pointer; }
+.team-card.is-selected .team-blob {
+    border-radius: 58% 42% 38% 62% / 60% 58% 42% 40%;
+    opacity: 1;
+    background: linear-gradient(135deg, #ff6348, #c94030);
+    transform: translateX(-50%) scale(1.08);
+}
+
+/* ============================================================
+   OVERLAY BACKDROP
+   ============================================================ */
+.member-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+}
+.member-overlay.active {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.member-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(4, 6, 14, 0.88);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    cursor: pointer;
+    /* dot-grid texture */
+    background-image:
+        radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px),
+        radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 28px 28px, 56px 56px;
+    background-color: rgba(4, 6, 14, 0.92);
+}
+
+/* ============================================================
+   MAIN PANEL  (the large card that holds everything)
+   ============================================================ */
+.member-panel {
+    position: relative;
+    z-index: 10;
+    width: min(960px, 92vw);
+    min-height: 520px;
+    border-radius: 28px;
+    background: rgba(14, 18, 32, 0.78);
+    border: 1px solid rgba(255,255,255,0.08);
+    box-shadow:
+        0 32px 80px rgba(0,0,0,0.55),
+        0 0 0 1px rgba(255,99,72,0.08) inset;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    padding: 0;
+    overflow: visible;
+
+    transform: translateY(32px) scale(0.96);
+    transition: transform 0.45s cubic-bezier(0.22,1,0.36,1), opacity 0.45s ease;
+    opacity: 0;
+    display: grid;
+    grid-template-columns: 320px 1fr;
+}
+.member-overlay.active .member-panel {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+/* ── Photo column ─────────────────────────────────────────── */
+.mp-photo-col {
+    position: relative;
+    border-radius: 28px 0 0 28px;
+    overflow: hidden;
+    background: linear-gradient(160deg, #110f20 0%, #1a1228 100%);
+    min-height: 500px;
+}
+.mp-photo-col::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,8,20,0.85) 0%, transparent 55%);
+    pointer-events: none;
+}
+.mp-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.6s ease;
+}
+.mp-photo-col:hover .mp-photo { transform: scale(1.03); }
+
+/* Placeholder icon when no photo */
+.mp-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    color: rgba(255,255,255,0.12);
+    background: linear-gradient(160deg, #0e0c1c, #1a1228);
+}
+
+/* Subsystem badge pinned to photo bottom */
+.mp-sub-badge {
+    position: absolute;
+    bottom: 22px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    background: rgba(255,99,72,0.18);
+    border: 1px solid rgba(255,99,72,0.45);
+    color: #ff8570;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 100px;
+    white-space: nowrap;
+    backdrop-filter: blur(8px);
+}
+
+/* ── Info column ──────────────────────────────────────────── */
+.mp-info-col {
+    padding: 40px 44px 40px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    position: relative;
+}
+
+/* Close button */
+.mp-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.6);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.mp-close:hover {
+    background: rgba(255,99,72,0.2);
+    border-color: rgba(255,99,72,0.5);
+    color: #ff6348;
+}
+
+/* Name + role header */
+.mp-header {}
+.mp-role-label {
+    display: block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #ff6348;
+    margin-bottom: 8px;
+}
+.mp-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.1rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.15;
+    margin: 0 0 6px;
+}
+.mp-bio {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.52);
+    margin: 0;
+}
+
+/* ── Stat widgets row (floating-card look) ──────────────────── */
+.mp-widgets {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+/* Base widget card */
+.mp-widget {
+    border-radius: 16px;
+    padding: 18px 20px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.04);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.mp-widget:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.35);
+}
+
+/* Accent widget (coral) — spans full width */
+.mp-widget--accent {
+    background: linear-gradient(135deg, #ff6348 0%, #c73e28 100%);
+    border-color: transparent;
+    box-shadow: 0 8px 30px rgba(255,99,72,0.28);
+    grid-column: span 2;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.mp-widget--accent .mp-widget-label { color: rgba(255,255,255,0.75); }
+.mp-widget--accent .mp-widget-value { color: #fff; }
+
+.mp-widget-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.42);
+    margin-bottom: 6px;
+    display: block;
+}
+.mp-widget-value {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+}
+.mp-widget-sub {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.42);
+    margin-top: 4px;
+    display: block;
+}
+
+/* Bar chart widget */
+.mp-bar-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-top: 6px;
+}
+.mp-bar-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.mp-bar-label {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.5);
+    width: 72px;
+    flex-shrink: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.mp-bar-track {
+    flex: 1;
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.1);
+    overflow: hidden;
+}
+.mp-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #ff6348, #ffa590);
+    width: 0%;
+    transition: width 0.8s cubic-bezier(0.22,1,0.36,1);
+}
+.member-overlay.active .mp-bar-fill {
+    width: var(--bar-pct);
+}
+
+/* ── Skills tags ──────────────────────────────────────────── */
+.mp-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.mp-skill-tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 5px 12px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.65);
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.mp-skill-tag:hover {
+    border-color: rgba(255,99,72,0.5);
+    color: #ff8570;
+    background: rgba(255,99,72,0.08);
+}
+
+/* ── Social links ─────────────────────────────────────────── */
+.mp-social {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 6px;
+}
+.mp-social a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s;
+}
+.mp-social a:hover {
+    border-color: rgba(255,99,72,0.5);
+    color: #ff6348;
+    background: rgba(255,99,72,0.1);
+    transform: translateY(-2px);
+}
+
+/* ── Floating accent dot decorations ─────────────────────── */
+.mp-info-col::before {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -40px;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,99,72,0.12) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+/* ── Notification / contributions widget ─────────────────── */
+.mp-widget--msg {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+.mp-msg-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff6348, #c73e28);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: #fff;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(255,99,72,0.3);
+    position: relative;
+}
+.mp-msg-dot {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ff6348;
+    border: 2px solid #0e0c1c;
+    animation: pulse-dot 1.8s ease infinite;
+}
+@keyframes pulse-dot {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50%       { transform: scale(1.3); opacity: 0.7; }
+}
+.mp-msg-text {}
+.mp-msg-count {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+}
+.mp-msg-desc {
+    font-size: 0.7rem;
+    color: rgba(255,255,255,0.42);
+    margin-top: 2px;
+}
+
+/* ============================================================
+   FLOATING WIDGET CARDS  (scattered outside the main panel)
+   These use position:absolute relative to .member-panel wrapper
+   We position them relative to the viewport using a container
+   ============================================================ */
+.member-panel-wrap {
+    position: relative;
+    z-index: 10;
+    width: min(960px, 92vw);
+    margin: 0 auto;
+}
+
+/* Floating external widget */
+.mp-float {
+    position: absolute;
+    border-radius: 18px;
+    background: rgba(14, 18, 32, 0.85);
+    border: 1px solid rgba(255,255,255,0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 16px 20px;
+    box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    min-width: 160px;
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    pointer-events: none;
+}
+.member-overlay.active .mp-float {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Knowledge float — top right, outside panel */
+.mp-float--knowledge {
+    top: -48px;
+    right: -80px;
+    transform: translateX(20px) rotate(-4deg);
+    transition-delay: 0.18s;
+}
+.member-overlay.active .mp-float--knowledge {
+    transform: translateX(0) rotate(-4deg);
+}
+
+/* Efficiency float — bottom right */
+.mp-float--efficiency {
+    bottom: -52px;
+    right: -70px;
+    transform: translateX(20px) rotate(3deg);
+    background: linear-gradient(135deg, rgba(255,99,72,0.22), rgba(180,40,20,0.22));
+    border-color: rgba(255,99,72,0.2);
+    transition-delay: 0.28s;
+}
+.member-overlay.active .mp-float--efficiency {
+    transform: translateX(0) rotate(3deg);
+}
+
+/* Years float — top left */
+.mp-float--years {
+    top: -48px;
+    left: -70px;
+    transform: translateX(-20px) rotate(4deg);
+    transition-delay: 0.12s;
+}
+.member-overlay.active .mp-float--years {
+    transform: translateX(0) rotate(4deg);
+}
+
+.mp-float-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.38);
+    margin-bottom: 6px;
+    display: block;
+}
+.mp-float-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+}
+.mp-float-sub {
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.38);
+    margin-top: 5px;
+    display: block;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 720px) {
+    .member-panel {
+        grid-template-columns: 1fr;
+        width: 94vw;
+    }
+    .mp-photo-col {
+        border-radius: 28px 28px 0 0;
+        min-height: 240px;
+    }
+    .mp-info-col {
+        padding: 28px 24px 32px;
+    }
+    .mp-float { display: none; }    /* hide floating cards on mobile */
+    .mp-widgets { grid-template-columns: 1fr; }
+    .mp-widget--accent { grid-column: span 1; }
+    .mp-name { font-size: 1.7rem; }
+}
+
+@media (max-width: 480px) {
+    .mp-close { top: 12px; right: 12px; }
+    .mp-photo-col { min-height: 200px; }
+}

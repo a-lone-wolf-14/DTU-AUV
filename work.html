@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DTU AUV - Our Bots</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/work.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="work-page">
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <div class="logo-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                        <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                        <line x1="12" y1="2" x2="12" y2="8" stroke="currentColor" stroke-width="2"/>
+                        <line x1="12" y1="16" x2="12" y2="22" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                </div>
+                <span>DTU AUV</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="team.html">Team</a></li>
+                <li><a href="work.html" class="active">Work</a></li>
+            </ul>
+            <div class="nav-search">
+                <input type="text" placeholder="I'm looking for...">
+                <button class="search-btn"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== SHOWCASE ========== -->
+    <section class="showcase" id="showcase">
+        <div class="showcase-bg-grain"></div>
+
+        <div class="showcase-content">
+            <!-- Header -->
+            <div class="showcase-header">
+                <span class="showcase-eyebrow">DTU AUV Fleet</span>
+                <h1 class="showcase-title">Our Bots</h1>
+                <p class="showcase-subtitle">Autonomous Underwater Vehicles — Engineered at DTU</p>
+            </div>
+
+            <!-- Cards — 3D Perspective Carousel -->
+            <div class="carousel-stage" id="carousel-stage">
+                <div class="carousel-track" id="carousel-track">
+                    <!-- LAPRAS 2.0 -->
+                    <div class="ccard" data-bot="lapras" data-index="0">
+                        <div class="ccard-img-wrap">
+                            <img src="assets/images/bots/lapras-2.0.png" alt="LAPRAS 2.0">
+                        </div>
+                        <div class="ccard-info">
+                            <h3 class="ccard-name">LAPRAS 2.0</h3>
+                            <span class="ccard-badge"><i class="fas fa-water"></i> Generation 2.0</span>
+                            <button class="ccard-explore" data-bot="lapras">
+                                Explore <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="ccard-glow"></div>
+                    </div>
+
+                    <!-- ARKAJA 2.0 -->
+                    <div class="ccard" data-bot="arkaja" data-index="1">
+                        <div class="ccard-img-wrap">
+                            <img src="assets/images/bots/arkaja-2.0.png" alt="ARKAJA 2.0">
+                        </div>
+                        <div class="ccard-info">
+                            <h3 class="ccard-name">ARKAJA 2.0</h3>
+                            <span class="ccard-badge"><i class="fas fa-water"></i> Generation 2.0</span>
+                            <button class="ccard-explore" data-bot="arkaja">
+                                Explore <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="ccard-glow"></div>
+                    </div>
+
+                    <!-- MATSYA 6.0 -->
+                    <div class="ccard" data-bot="matsya" data-index="2">
+                        <div class="ccard-img-wrap">
+                            <img src="assets/images/bots/new-bot.png" alt="MATSYA 6.0">
+                        </div>
+                        <div class="ccard-info">
+                            <h3 class="ccard-name">MATSYA 6.0</h3>
+                            <span class="ccard-badge"><i class="fas fa-water"></i> Generation 6.0</span>
+                            <button class="ccard-explore" data-bot="matsya">
+                                Explore <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="ccard-glow"></div>
+                    </div>
+
+                    <!-- VARUNA 3.0 -->
+                    <div class="ccard" data-bot="lapras2" data-index="3">
+                        <div class="ccard-img-wrap">
+                            <img src="assets/images/bots/varuna-3.0.png" alt="VARUNA 3.0">
+                        </div>
+                        <div class="ccard-info">
+                            <h3 class="ccard-name">VARUNA 3.0</h3>
+                            <span class="ccard-badge"><i class="fas fa-water"></i> Generation 3.0</span>
+                            <button class="ccard-explore" data-bot="lapras2">
+                                Explore <i class="fas fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        <div class="ccard-glow"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="showcase-nav">
+                <button class="nav-arrow" id="nav-prev" aria-label="Previous">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="nav-dots" id="nav-dots">
+                    <span class="nav-dot active" data-index="0"></span>
+                    <span class="nav-dot" data-index="1"></span>
+                    <span class="nav-dot" data-index="2"></span>
+                    <span class="nav-dot" data-index="3"></span>
+                </div>
+                <button class="nav-arrow" id="nav-next" aria-label="Next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DETAIL OVERLAY ========== -->
+    <section class="detail-overlay" id="detail-overlay">
+        <div class="detail-backdrop" id="detail-backdrop"></div>
+        <div class="detail-panel">
+            <button class="detail-close" id="detail-close">
+                <i class="fas fa-xmark"></i>
+            </button>
+
+            <div class="detail-grid">
+                <!-- Left: Bot visual -->
+                <div class="detail-visual">
+                    <div class="detail-visual-glow"></div>
+                    <img class="detail-bot-img" id="detail-bot-img" src="assets/images/bots/arkaja-2.0.png" alt="ARKAJA 2.0">
+                </div>
+
+                <!-- Right: Info & specs -->
+                <div class="detail-info">
+                    <span class="detail-tag">Autonomous Underwater Vehicle</span>
+                    <h2 class="detail-name" id="detail-name">ARKAJA 2.0</h2>
+                    <p class="detail-desc" id="detail-desc">
+                        Designed and built by the DTU AUV team for underwater exploration,
+                        autonomous navigation, and robotics competition.
+                    </p>
+
+                    <div class="specs-grid" id="specs-grid">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <div class="detail-actions">
+                        <button class="btn-primary" id="btn-specs-toggle">
+                            <i class="fas fa-list-ul"></i>
+                            Full Specifications
+                        </button>
+                    </div>
+
+                    <!-- Full specs (toggled) -->
+                    <div class="full-specs" id="full-specs">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ENGINEERING PHILOSOPHY (Light) ========== -->
+    <section class="work-section work-section--light" id="philosophy">
+        <div class="work-container">
+            <div class="sec-header-work anim-fade-up">
+                <span class="wsec-tag"><span class="wtag-num">01</span><span class="wtag-dash"></span>OUR APPROACH</span>
+                <h2 class="wsec-title">Engineering Philosophy</h2>
+                <p class="wsec-subtitle">Every vehicle we build reflects our core principles — iterative design, rigorous testing, and relentless innovation.</p>
+            </div>
+
+            <div class="philosophy-grid">
+                <div class="phil-card anim-fade-up">
+                    <div class="phil-icon"><i class="fas fa-microscope"></i></div>
+                    <h4>Research-First Design</h4>
+                    <p>Every component decision is backed by research papers, CFD simulations, and prototyping. We don't guess — we validate.</p>
+                </div>
+                <div class="phil-card anim-fade-up delay-1">
+                    <div class="phil-icon"><i class="fas fa-arrows-rotate"></i></div>
+                    <h4>Iterative Development</h4>
+                    <p>Each generation builds on lessons from the last. Failures become blueprints for breakthroughs.</p>
+                </div>
+                <div class="phil-card anim-fade-up delay-2">
+                    <div class="phil-icon"><i class="fas fa-puzzle-piece"></i></div>
+                    <h4>Modular Architecture</h4>
+                    <p>Swappable subsystems mean faster debugging, easier upgrades, and parallel development across teams.</p>
+                </div>
+                <div class="phil-card anim-fade-up delay-3">
+                    <div class="phil-icon"><i class="fas fa-vial"></i></div>
+                    <h4>Test-Driven Integration</h4>
+                    <p>Pool tests, pressure tests, and simulation — every system is proven before it goes underwater.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== TECH STACK (Dark) ========== -->
+    <section class="work-section work-section--dark" id="tech-stack">
+        <div class="work-container">
+            <div class="sec-header-work anim-fade-up">
+                <span class="wsec-tag"><span class="wtag-num">02</span><span class="wtag-dash"></span>TECHNOLOGY</span>
+                <h2 class="wsec-title wsec-title--white">Core Technologies</h2>
+                <p class="wsec-subtitle wsec-subtitle--muted">The tools, frameworks, and hardware powering our autonomous vehicles.</p>
+            </div>
+
+            <div class="tech-grid">
+                <div class="tech-card anim-fade-up">
+                    <div class="tech-icon"><i class="fas fa-robot"></i></div>
+                    <span class="tech-label">ROS 2</span>
+                    <p>Robotics middleware for autonomous control, sensor fusion, and inter-process communication.</p>
+                </div>
+                <div class="tech-card anim-fade-up delay-1">
+                    <div class="tech-icon"><i class="fas fa-eye"></i></div>
+                    <span class="tech-label">OpenCV + YOLO</span>
+                    <p>Real-time underwater object detection and visual servoing for task execution.</p>
+                </div>
+                <div class="tech-card anim-fade-up delay-2">
+                    <div class="tech-icon"><i class="fas fa-microchip"></i></div>
+                    <span class="tech-label">Jetson + STM32</span>
+                    <p>NVIDIA Jetson for AI inference paired with STM32 microcontrollers for low-level motor &amp; sensor control.</p>
+                </div>
+                <div class="tech-card anim-fade-up delay-3">
+                    <div class="tech-icon"><i class="fas fa-cube"></i></div>
+                    <span class="tech-label">SolidWorks</span>
+                    <p>CAD modeling and FEA simulations for hull design, thruster mounts, and watertight enclosures.</p>
+                </div>
+                <div class="tech-card anim-fade-up">
+                    <div class="tech-icon"><i class="fas fa-bolt"></i></div>
+                    <span class="tech-label">KiCad</span>
+                    <p>Custom PCB design for power distribution boards, motor drivers, and sensor interface circuits.</p>
+                </div>
+                <div class="tech-card anim-fade-up delay-1">
+                    <div class="tech-icon"><i class="fas fa-wave-square"></i></div>
+                    <span class="tech-label">Acoustics</span>
+                    <p>Hydrophone arrays and DSP algorithms for underwater acoustic localization and pinger detection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <a href="index.html" class="nav-logo footer-logo">
+                        <div class="logo-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                                <circle cx="12" cy="12" r="4" fill="currentColor"/>
+                                <line x1="12" y1="2" x2="12" y2="8" stroke="currentColor" stroke-width="2"/>
+                                <line x1="12" y1="16" x2="12" y2="22" stroke="currentColor" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <span>DTU AUV</span>
+                    </a>
+                </div>
+            </div>
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Email</h4>
+                    <p>auv@dtu.ac.in</p>
+                    <h4 class="mt">Address</h4>
+                    <p>Delhi Technological University<br>Shahbad Daulatpur, Delhi-42</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Affiliated With</h4>
+                    <p>Delhi Technological University</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="work.html">Work</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Explore</h4>
+                    <ul>
+                        <li><a href="work.html">LAPRAS 2.0</a></li>
+                        <li><a href="work.html">ARKAJA 2.0</a></li>
+                        <li><a href="#">RoboSub</a></li>
+                        <li><a href="#">SAUVC</a></li>
+                        <li><a href="#">Research Papers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col footer-end">
+                    <h4>MARINE ROBOTICS &amp;<br>AUV TECHNOLOGY</h4>
+                    <p>Dive into a world where AI, robotics, and engineering converge beneath the ocean surface to advance marine technology.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-dribbble"></i></a>
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-bottom-inner">
+                <div class="logo-item"><i class="fas fa-microchip"></i> <span>RoboSub</span></div>
+                <div class="logo-item"><i class="fas fa-anchor"></i> <span>SAUVC</span></div>
+                <div class="logo-item"><i class="fas fa-water"></i> <span>LAPRAS 2.0</span></div>
+                <div class="logo-item"><i class="fas fa-ship"></i> <span>ARKAJA 2.0</span></div>
+                <div class="logo-item"><i class="fas fa-cogs"></i> <span>DTU AUV</span></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script src="js/work.js"></script>
+</body>
+</html>
