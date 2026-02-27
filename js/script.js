@@ -118,18 +118,61 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // ========== POSSIBILITIES TABS ==========
 const possTabs = document.querySelectorAll('.poss-tab');
+const possTabData = [
+    {
+        image: 'assets/images/lapras%202.0%20underwater.png',
+        alt: 'LAPRAS 2.0',
+        title: 'LAPRAS 2.0 — Next-Gen Underwater Explorer',
+        desc: "LAPRAS 2.0 is DTU AUV's second-generation autonomous underwater vehicle built for the SAUVC competition. Featuring a streamlined hull, enhanced thruster configuration, and an upgraded vision pipeline, it pushes the boundaries of underwater autonomy.",
+        link: 'work.html'
+    },
+    {
+        image: 'assets/images/arkaja%202.0%20underwater.png',
+        alt: 'ARKAJA 2.0',
+        title: 'ARKAJA 2.0 — Deep-Sea Challenger',
+        desc: "ARKAJA 2.0 is engineered for the RoboSub competition, featuring advanced AI-driven navigation, a robust 6-DOF thruster array, and a custom acoustic localisation system for precision underwater manoeuvres.",
+        link: 'work.html'
+    },
+    {
+        image: 'assets/images/competition.jpeg',
+        alt: 'Competitions',
+        title: 'AMU-ROVc 4.0',
+        desc: "AMUROVE 4.0 is a national-level, remotely operated underwater vehicle (ROV) competition hosted by MTS AUV-ZHCET in collaboration with IEEE RAS ZHCET, challenging students to design and build innovative marine robotics solutions.",
+        link: 'work.html'
+    }
+];
+
 possTabs.forEach(tab => {
     tab.addEventListener('click', () => {
         possTabs.forEach(t => t.classList.remove('active'));
         tab.classList.add('active');
 
-        // Animate the image
+        const idx = parseInt(tab.getAttribute('data-tab'), 10);
+        const data = possTabData[idx];
+        if (!data) return;
+
         const possImage = document.querySelector('.poss-image img');
+        const possTitle = document.querySelector('.poss-article-title');
+        const possDesc  = document.querySelector('.poss-article-desc');
+
+        // Fade out
+        possImage.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        possImage.style.opacity = '0';
         possImage.style.transform = 'scale(0.95)';
-        possImage.style.opacity = '0.7';
+
+        if (possTitle) { possTitle.style.transition = 'opacity 0.25s ease'; possTitle.style.opacity = '0'; }
+        if (possDesc)  { possDesc.style.transition  = 'opacity 0.25s ease'; possDesc.style.opacity  = '0'; }
+
         setTimeout(() => {
-            possImage.style.transform = 'scale(1)';
+            possImage.src = data.image;
+            possImage.alt = data.alt;
+            if (possTitle) possTitle.textContent = data.title;
+            if (possDesc)  possDesc.textContent  = data.desc;
+
             possImage.style.opacity = '1';
+            possImage.style.transform = 'scale(1)';
+            if (possTitle) possTitle.style.opacity = '1';
+            if (possDesc)  possDesc.style.opacity  = '1';
         }, 300);
     });
 });

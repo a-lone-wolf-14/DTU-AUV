@@ -168,8 +168,7 @@ if (container) {
                 const cardWidth = cardHeight * targetAspect;
                 const geometry = new THREE.PlaneGeometry(cardWidth, cardHeight);
 
-                // Sharp (full-res) material
-                const sharpMaterial = new THREE.MeshBasicMaterial({
+                const material = new THREE.MeshBasicMaterial({
                     map: tex,
                     side: THREE.DoubleSide,
                     transparent: true,
@@ -177,29 +176,7 @@ if (container) {
                     color: 0x777777
                 });
 
-                // Blurred canvas texture — simulates depth-of-field for far cards
-                const blurCanvas = document.createElement('canvas');
-                const blurSize = 256;
-                const blurRatio = blurSize / Math.max(imgW, imgH);
-                blurCanvas.width  = Math.round(imgW * blurRatio);
-                blurCanvas.height = Math.round(imgH * blurRatio);
-                const blurCtx = blurCanvas.getContext('2d');
-                blurCtx.filter = 'blur(5px)';
-                blurCtx.drawImage(tex.image, 0, 0, blurCanvas.width, blurCanvas.height);
-                const blurTex = new THREE.CanvasTexture(blurCanvas);
-                blurTex.repeat.set(uScale, vScale);
-                blurTex.offset.set(uOffset, vOffset);
-                blurTex.needsUpdate = true;
-
-                const blurMaterial = new THREE.MeshBasicMaterial({
-                    map: blurTex,
-                    side: THREE.DoubleSide,
-                    transparent: true,
-                    opacity: 0.35,
-                    color: 0x777777
-                });
-
-                const mesh = new THREE.Mesh(geometry, sharpMaterial);
+                const mesh = new THREE.Mesh(geometry, material);
 
                 const phi   = Math.acos(-1 + (2 * i) / cardData.length);
                 const theta = Math.sqrt(cardData.length * Math.PI) * phi;
@@ -212,9 +189,10 @@ if (container) {
                     spherical: new THREE.Spherical(sphereRadius, phi, theta),
                     title: data.title,
                     desc: data.desc,
-                    sharpMaterial,
-                    blurMaterial,
-                    isHovered: false
+                    isHovered: false,
+                    naturalAspect: aspect,
+                    cropUV: { uScale, vScale, uOffset, vOffset },
+                    tex: tex
                 };
 
                 group.add(mesh);
@@ -253,15 +231,22 @@ if (container) {
 
     function exitFocus() {
         if (!activeNode) return;
+        const prev = activeNode;
         activeNode = null;
+
+        // Animate UV back to cropped
+        const crop = prev.userData.cropUV;
+        const tex  = prev.userData.tex;
+        if (tex && crop) {
+            gsap.to(tex.repeat, { x: crop.uScale, y: crop.vScale, duration: 0.5, ease: 'power2.inOut' });
+            gsap.to(tex.offset, { x: crop.uOffset, y: crop.vOffset, duration: 0.5, ease: 'power2.inOut' });
+        }
 
         sidePanel.classList.add('hidden');
         exitBtn.classList.remove('visible');
 
         introText.style.opacity = '1';
         introText.style.pointerEvents = 'auto';
-
-        // Re-enable auto-rotation — depth loop takes over material/scale reset
     }
 
     exitBtn && exitBtn.addEventListener('click', exitFocus);
@@ -286,17 +271,35 @@ if (container) {
 
     function focusOnNode(mesh) {
         if (activeNode === mesh) return;
+
+        // Restore previous active node's UV to cropped
+        if (activeNode) {
+            const prev = activeNode;
+            const pCrop = prev.userData.cropUV;
+            const pTex  = prev.userData.tex;
+            if (pTex && pCrop) {
+                gsap.to(pTex.repeat, { x: pCrop.uScale, y: pCrop.vScale, duration: 0.5, ease: 'power2.inOut' });
+                gsap.to(pTex.offset, { x: pCrop.uOffset, y: pCrop.vOffset, duration: 0.5, ease: 'power2.inOut' });
+            }
+        }
+
         activeNode = mesh;
 
         introText.style.opacity = '0';
         introText.style.pointerEvents = 'none';
         sidePanel.classList.add('hidden');
 
-        // Reset exit button
         exitBtn && exitBtn.classList.remove('visible');
 
         const targetY = -mesh.userData.spherical.theta;
         const targetX =  Math.PI / 2 - mesh.userData.spherical.phi;
+
+        // Animate UV to full (uncrop) for focused card
+        const tex = mesh.userData.tex;
+        if (tex) {
+            gsap.to(tex.repeat, { x: 1, y: 1, duration: 0.7, ease: 'power2.out' });
+            gsap.to(tex.offset, { x: 0, y: 0, duration: 0.7, ease: 'power2.out' });
+        }
 
         gsap.to(group.rotation, {
             y: targetY,
@@ -311,13 +314,20 @@ if (container) {
             }
         });
 
+        // How much wider the full image is vs. cropped portrait
+        const uncropScale = Math.min(mesh.userData.naturalAspect / 0.75, 3.0);
+
         nodes.forEach(n => {
-            // Reset to sharp material so GSAP targets correct map
-            n.material = n.userData.sharpMaterial || n.material;
             if (n === mesh) {
                 gsap.to(n.material, { opacity: 1, duration: 0.6 });
                 gsap.to(n.material.color, { r: 1, g: 1, b: 1, duration: 0.6 });
-                gsap.to(n.scale, { x: 1.14, y: 1.14, z: 1.14, duration: 0.6, ease: 'power2.out' });
+                gsap.to(n.scale, {
+                    x: 1.2 * uncropScale,
+                    y: 1.2,
+                    z: 1.2,
+                    duration: 0.7,
+                    ease: 'power2.out'
+                });
             } else {
                 gsap.to(n.material, { opacity: 0.12, duration: 0.6 });
                 gsap.to(n.material.color, { r: 0.28, g: 0.28, b: 0.28, duration: 0.6 });
@@ -376,38 +386,23 @@ if (container) {
             let targetOpacity, targetBright, targetScale;
 
             if (node.userData.isHovered) {
-                // Hover state — pop to front
                 targetOpacity = 1.0;
                 targetBright  = 1.0;
                 targetScale   = 1.15;
             } else {
-                // Depth-based: front cards are sharp/bright/large, back cards are blurred/dark/small
-                targetOpacity = 0.12 + depthScore * 0.73;   // 0.12 → 0.85
-                targetBright  = 0.28 + depthScore * 0.72;   // 0.28 → 1.0
-                targetScale   = 0.70 + depthScore * 0.34;   // 0.70 → 1.04
+                targetOpacity = 0.12 + depthScore * 0.73;
+                targetBright  = 0.28 + depthScore * 0.72;
+                targetScale   = 0.70 + depthScore * 0.34;
             }
 
-            // Smooth lerp toward targets
+            // Smooth lerp — uniform scale (all cards stay same cropped ratio)
             const lerpSpeed = 0.07;
             node.material.opacity += (targetOpacity - node.material.opacity) * lerpSpeed;
             const curB = node.material.color.r;
             node.material.color.setScalar(curB + (targetBright - curB) * lerpSpeed);
-            const curS = node.scale.x;
-            node.scale.setScalar(curS + (targetScale - curS) * lerpSpeed);
-
-            // Swap sharp ↔ blurred material based on depth (blur when far/behind)
-            const shouldBlur = depthScore < 0.52 && !node.userData.isHovered;
-            const targetMat  = shouldBlur
-                ? node.userData.blurMaterial
-                : node.userData.sharpMaterial;
-
-            if (targetMat && node.material !== targetMat) {
-                const savedOpacity = node.material.opacity;
-                const savedBright  = node.material.color.r;
-                node.material = targetMat;
-                node.material.opacity = savedOpacity;
-                node.material.color.setScalar(savedBright);
-            }
+            node.scale.x += (targetScale - node.scale.x) * lerpSpeed;
+            node.scale.y += (targetScale - node.scale.y) * lerpSpeed;
+            node.scale.z += (targetScale - node.scale.z) * lerpSpeed;
         });
     }
 

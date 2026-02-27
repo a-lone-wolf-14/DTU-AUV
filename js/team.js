@@ -1,6 +1,7 @@
 /* ============================================================
    TEAM PAGE — MEMBER DETAIL OVERLAY
    team.js  –  DTU AUV
+   Redesigned: floating-card composition around central photo
    ============================================================ */
 
 // ── Member Data ──────────────────────────────────────────────
@@ -13,14 +14,10 @@ const members = {
     photo:       'assets/images/team/1.jpg',
     bio:         'Leads the overall strategy and execution of DTU AUV. Coordinates cross-functional teams and represents the club at international competitions including RoboSub and SAUVC.',
     skills:      ['Leadership', 'Project Management', 'Systems Engineering', 'RoboSub', 'SAUVC'],
-    expertise:   92,          // % – used for the expertise bar (Knowledge widget)
-    contributions: 148,       // number shown in the Contributions widget
+    expertise:   92,
+    contributions: 148,
     yearsActive: 3,
-    social: {
-      linkedin: '#',
-      github:   '#',
-      twitter:  '#',
-    },
+    social: { linkedin: '#', github: '#', twitter: '#' },
     bars: [
       { label: 'Strategy',    pct: 95 },
       { label: 'Engineering', pct: 78 },
@@ -155,7 +152,35 @@ const members = {
   },
 };
 
-// ── Build overlay HTML once, then reuse ──────────────────────
+// ── Subsystem → decorative character mapping ─────────────────
+const subsystemChar = {
+  Leadership:     '⚑',
+  Communications: '✦',
+  Mechanical:     '⚙',
+  Electronics:    '⚡',
+  Software:       '◈',
+  Operations:     '◉',
+  Interface:      '◎',
+};
+
+// ── Generate bar chart heights from member data ──────────────
+function generateBarHeights(data) {
+  // Use the expertise + bar percentages to seed a histogram pattern
+  const base = data.expertise / 100;
+  const barCount = 18;
+  const heights = [];
+  // Create a natural-looking wave pattern based on skill data
+  for (let i = 0; i < barCount; i++) {
+    const phase = (i / barCount) * Math.PI * 2;
+    const wave  = Math.sin(phase * 1.5 + data.contributions * 0.1) * 0.3;
+    const noise = Math.sin(i * 3.7 + data.expertise * 0.2) * 0.2;
+    const h     = Math.max(0.12, Math.min(1, base * 0.6 + wave + noise + 0.3));
+    heights.push(Math.round(h * 100));
+  }
+  return heights;
+}
+
+// ── Build overlay DOM once ───────────────────────────────────
 function buildOverlay() {
   const overlay = document.createElement('div');
   overlay.id        = 'member-overlay';
@@ -163,81 +188,89 @@ function buildOverlay() {
   overlay.innerHTML = `
     <div class="member-backdrop" id="member-backdrop"></div>
 
-    <div class="member-panel-wrap">
-      <!-- Floating external widgets (scattered around the panel) -->
-      <div class="mp-float mp-float--years" id="mp-float-years">
-        <span class="mp-float-label">Years Active</span>
-        <div class="mp-float-value" id="mpf-years">–</div>
-        <span class="mp-float-sub">in the team</span>
-      </div>
-      <div class="mp-float mp-float--knowledge" id="mp-float-knowledge">
-        <span class="mp-float-label">Knowledge</span>
-        <div class="mp-float-value" id="mpf-expertise">–%</div>
-        <span class="mp-float-sub" id="mpf-subsystem">–</span>
-      </div>
-      <div class="mp-float mp-float--efficiency" id="mp-float-efficiency">
-        <span class="mp-float-label">Efficiency</span>
-        <div class="mp-float-value" id="mpf-contributions">–</div>
-        <span class="mp-float-sub">contributions</span>
-      </div>
+    <div class="member-composition" id="member-composition">
+      <!-- Close -->
+      <button class="mp-close" id="mp-close" aria-label="Close">
+        <i class="fas fa-times"></i>
+      </button>
 
-      <!-- Main panel -->
-      <div class="member-panel" id="member-panel">
+      <!-- Photo area: holds main card + floating cards -->
+      <div class="mp-photo-area">
 
-        <!-- Left: Photo -->
-        <div class="mp-photo-col">
-          <img src="" alt="" class="mp-photo" id="mp-photo" style="display:none">
-          <div class="mp-photo-placeholder" id="mp-photo-placeholder">
+        <!-- Floating logo -->
+        <div class="mp-logo-float">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="12" cy="12" r="4" fill="currentColor"/>
+          </svg>
+        </div>
+
+        <!-- Messages / Contributions card — top right -->
+        <div class="mp-card mp-card--messages" id="mp-card-messages">
+          <div class="mp-card__header">
+            <span class="mp-card__title">Contributions</span>
+            <span class="mp-card__badge" id="mp-contrib-badge">–</span>
+          </div>
+          <div class="mp-card__thumb-wrap">
+            <img class="mp-card__thumb" id="mp-thumb-msg" src="" alt="">
+          </div>
+        </div>
+
+        <!-- Main photo card — centre -->
+        <div class="mp-main-card" id="mp-main-card">
+          <img class="mp-main-photo" id="mp-photo" src="" alt="" style="display:none">
+          <div class="mp-photo-placeholder" id="mp-photo-placeholder" style="display:none">
             <i class="fas fa-user"></i>
           </div>
-          <span class="mp-sub-badge" id="mp-sub-badge">– Subsystem</span>
+          <div class="mp-main-gradient"></div>
         </div>
 
-        <!-- Right: Info -->
-        <div class="mp-info-col">
-          <button class="mp-close" id="mp-close" aria-label="Close">
-            <i class="fas fa-times"></i>
-          </button>
-
-          <div class="mp-header">
-            <span class="mp-role-label" id="mp-role">–</span>
-            <h2 class="mp-name" id="mp-name">–</h2>
-            <p class="mp-bio" id="mp-bio">–</p>
+        <!-- Knowledge card — bottom left -->
+        <div class="mp-card mp-card--knowledge" id="mp-card-knowledge">
+          <div class="mp-card__header">
+            <span class="mp-card__title">Knowledge</span>
+            <span class="mp-card__arrow">→</span>
           </div>
-
-          <!-- Stat widgets (inside panel) -->
-          <div class="mp-widgets">
-            <div class="mp-widget mp-widget--msg">
-              <div class="mp-msg-icon">
-                <i class="fas fa-code-branch"></i>
-                <span class="mp-msg-dot"></span>
-              </div>
-              <div class="mp-msg-text">
-                <div class="mp-msg-count" id="mp-contrib-inline">–</div>
-                <div class="mp-msg-desc">contributions</div>
-              </div>
-            </div>
-
-            <div class="mp-widget">
-              <span class="mp-widget-label">Expertise</span>
-              <div class="mp-widget-value" id="mp-expertise-inline">–%</div>
-              <span class="mp-widget-sub" id="mp-subsystem-inline">–</span>
-            </div>
-
-            <div class="mp-widget mp-widget--accent">
-              <div style="flex:1">
-                <span class="mp-widget-label">Skill Proficiency</span>
-                <div class="mp-bar-wrap" id="mp-bars"></div>
-              </div>
+          <div class="mp-card__big-char" id="mp-big-char">●</div>
+          <div class="mp-card__user">
+            <img class="mp-card__avatar" id="mp-avatar-know" src="" alt="">
+            <div class="mp-card__user-info">
+              <div class="mp-card__user-name" id="mp-name-know">–</div>
+              <div class="mp-card__user-pct" id="mp-pct-know">–%</div>
             </div>
           </div>
-
-          <!-- Skills -->
-          <div class="mp-skills" id="mp-skills"></div>
-
-          <!-- Social -->
-          <div class="mp-social" id="mp-social"></div>
         </div>
+
+        <!-- Efficiency card — bottom right -->
+        <div class="mp-card mp-card--efficiency" id="mp-card-efficiency">
+          <div class="mp-card__header">
+            <span class="mp-card__title">Efficiency</span>
+            <span class="mp-card__arrow">→</span>
+          </div>
+          <div class="mp-card__bars" id="mp-eff-bars"></div>
+          <div class="mp-card__user">
+            <img class="mp-card__avatar" id="mp-avatar-eff" src="" alt="">
+            <div class="mp-card__user-info">
+              <div class="mp-card__user-name" id="mp-name-eff">–</div>
+              <div class="mp-card__user-pct" id="mp-pct-eff">–%</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.mp-photo-area -->
+
+      <!-- Brand -->
+      <div class="mp-brand">DTU·AUV</div>
+
+      <!-- Details below composition -->
+      <div class="mp-details">
+        <div class="mp-details__header">
+          <span class="mp-details__role" id="mp-role">–</span>
+          <h2 class="mp-details__name" id="mp-name">–</h2>
+        </div>
+        <p class="mp-details__bio" id="mp-bio">–</p>
+        <div class="mp-details__skills" id="mp-skills"></div>
+        <div class="mp-details__social" id="mp-social"></div>
       </div>
     </div>
   `;
@@ -256,46 +289,63 @@ function openMember(slug) {
 
   const overlay = document.getElementById('member-overlay');
 
-  // Photo
-  const img   = document.getElementById('mp-photo');
-  const phld  = document.getElementById('mp-photo-placeholder');
+  // ── Photo ──
+  const img  = document.getElementById('mp-photo');
+  const phld = document.getElementById('mp-photo-placeholder');
   if (data.photo) {
-    img.src          = data.photo;
-    img.alt          = data.name;
-    img.style.display = 'block';
+    img.src            = data.photo;
+    img.alt            = data.name;
+    img.style.display  = 'block';
     phld.style.display = 'none';
   } else {
     img.style.display  = 'none';
     phld.style.display = 'flex';
   }
 
-  // Texts
-  document.getElementById('mp-name').textContent            = data.name;
-  document.getElementById('mp-role').textContent            = data.role;
-  document.getElementById('mp-bio').textContent             = data.bio;
-  document.getElementById('mp-sub-badge').textContent       = data.subsystem;
-  document.getElementById('mp-expertise-inline').textContent = data.expertise + '%';
-  document.getElementById('mp-subsystem-inline').textContent = data.subsystem;
-  document.getElementById('mp-contrib-inline').textContent   = data.contributions;
+  // ── Contributions card ──
+  document.getElementById('mp-contrib-badge').textContent = data.contributions;
+  const thumbMsg = document.getElementById('mp-thumb-msg');
+  thumbMsg.src = data.photo || '';
+  thumbMsg.alt = data.name;
 
-  // Floating widget values
-  document.getElementById('mpf-years').textContent        = data.yearsActive;
-  document.getElementById('mpf-expertise').textContent    = data.expertise + '%';
-  document.getElementById('mpf-subsystem').textContent    = data.subsystem;
-  document.getElementById('mpf-contributions').textContent = data.contributions;
+  // ── Knowledge card ──
+  const charEl = document.getElementById('mp-big-char');
+  charEl.textContent = subsystemChar[data.subsystem] || data.name.charAt(0);
+  document.getElementById('mp-name-know').textContent = data.name;
+  document.getElementById('mp-pct-know').textContent  = data.expertise + '%';
+  const avatarKnow = document.getElementById('mp-avatar-know');
+  avatarKnow.src = data.photo || '';
+  avatarKnow.alt = data.name;
 
-  // Skill bars
-  const barsEl = document.getElementById('mp-bars');
-  barsEl.innerHTML = '';
-  data.bars.forEach(b => {
-    barsEl.innerHTML += `
-      <div class="mp-bar-row">
-        <span class="mp-bar-label">${b.label}</span>
-        <div class="mp-bar-track">
-          <div class="mp-bar-fill" style="--bar-pct:${b.pct}%"></div>
-        </div>
-      </div>`;
+  // ── Efficiency card ──
+  const avgPct = Math.round(data.bars.reduce((s, b) => s + b.pct, 0) / data.bars.length);
+  document.getElementById('mp-name-eff').textContent = data.name;
+  document.getElementById('mp-pct-eff').textContent  = avgPct + '%';
+  const avatarEff = document.getElementById('mp-avatar-eff');
+  avatarEff.src = data.photo || '';
+  avatarEff.alt = data.name;
+
+  // Generate bars
+  const barsContainer = document.getElementById('mp-eff-bars');
+  barsContainer.innerHTML = '';
+  const heights = generateBarHeights(data);
+  heights.forEach(h => {
+    const bar = document.createElement('div');
+    bar.className = 'mp-card__bar';
+    bar.style.height = '0%';
+    barsContainer.appendChild(bar);
+    // Animate in after overlay activates
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        bar.style.height = h + '%';
+      });
+    });
   });
+
+  // ── Details section ──
+  document.getElementById('mp-name').textContent = data.name;
+  document.getElementById('mp-role').textContent = data.role;
+  document.getElementById('mp-bio').textContent  = data.bio;
 
   // Skills
   const skillsEl = document.getElementById('mp-skills');
@@ -307,35 +357,40 @@ function openMember(slug) {
     skillsEl.appendChild(tag);
   });
 
-  // Social links
+  // Social
   const socialEl = document.getElementById('mp-social');
   socialEl.innerHTML = '';
-  const icons = { linkedin: 'fab fa-linkedin-in', github: 'fab fa-github', twitter: 'fab fa-twitter', instagram: 'fab fa-instagram' };
+  const icons = {
+    linkedin:  'fab fa-linkedin-in',
+    github:    'fab fa-github',
+    twitter:   'fab fa-twitter',
+    instagram: 'fab fa-instagram',
+  };
   Object.entries(data.social || {}).forEach(([key, href]) => {
-    if (!href || href === '#') { /* still render placeholder */ }
     const a = document.createElement('a');
-    a.href  = href || '#';
-    a.title = key;
+    a.href      = href || '#';
+    a.title     = key;
     a.innerHTML = `<i class="${icons[key] || 'fas fa-link'}"></i>`;
     socialEl.appendChild(a);
   });
-  // Always add email
+  // Always add email link
   const emailA = document.createElement('a');
-  emailA.href  = 'mailto:' + data.email;
-  emailA.title = 'Email';
+  emailA.href      = 'mailto:' + data.email;
+  emailA.title     = 'Email';
   emailA.innerHTML = '<i class="fas fa-envelope"></i>';
   socialEl.appendChild(emailA);
 
-  // Show overlay → triggers CSS bar animations via .active
+  // ── Activate ──
   overlay.classList.add('active');
   document.body.style.overflow = 'hidden';
 
-  // Selected card highlight
+  // Highlight card in grid
   document.querySelectorAll('.team-card').forEach(c => c.classList.remove('is-selected'));
   const card = document.querySelector(`.team-card[data-member="${slug}"]`);
   if (card) card.classList.add('is-selected');
 }
 
+// ── Close ────────────────────────────────────────────────────
 function closeOverlay() {
   const overlay = document.getElementById('member-overlay');
   if (!overlay) return;
@@ -343,10 +398,10 @@ function closeOverlay() {
   document.body.style.overflow = '';
   document.querySelectorAll('.team-card').forEach(c => c.classList.remove('is-selected'));
 
-  // Re-zero bars so they animate in again on next open
+  // Reset bar heights for next animation
   setTimeout(() => {
-    document.querySelectorAll('.mp-bar-fill').forEach(b => (b.style.width = '0%'));
-  }, 300);
+    document.querySelectorAll('.mp-card__bar').forEach(b => (b.style.height = '0%'));
+  }, 350);
 }
 
 function onKeyDown(e) {
@@ -355,19 +410,14 @@ function onKeyDown(e) {
 
 // ── Init ─────────────────────────────────────────────────────
 function initTeam() {
-  // Prevent double-init
   if (document.getElementById('member-overlay')) return;
-
   buildOverlay();
 
   document.querySelectorAll('.team-card[data-member]').forEach(card => {
-    card.addEventListener('click', () => {
-      openMember(card.dataset.member);
-    });
+    card.addEventListener('click', () => openMember(card.dataset.member));
   });
 }
 
-// Run immediately if DOM is ready, otherwise wait for it
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', initTeam);
 } else {

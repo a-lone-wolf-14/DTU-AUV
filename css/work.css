@@ -288,6 +288,7 @@ body.work-page .search-btn:hover { color: rgba(255,255,255,0.85); }
     font-weight: 600;
     letter-spacing: 0.04em;
     cursor: pointer;
+    text-decoration: none;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0 4px 18px rgba(255,99,72,0.3);
 }

@@ -37,24 +37,25 @@ const botsData = {
             { icon: 'fa-gauge-high', value: '4 kn', label: 'Speed' }
         ]
     },
-    matsya: {
-        name: 'MATSYA 6.0',
-        gen: '6.0',
-        img: 'assets/images/bots/new-bot.png',
-        desc: 'A next-generation AUV with advanced multi-beam sonar and autonomous mission planning capabilities.',
+    varuna4: {
+        name: 'VARUNA 4.0',
+        gen: '4.0',
+        img: 'assets/images/bots/varuna-4.0.png',
+        desc: 'DTU AUV\'s flagship autonomous underwater vehicle — a modular, research-grade platform engineered for international competitions like RoboSub and SAUVC.',
         specs: {
-            'Length': '0.9 m', 'Width': '0.5 m', 'Depth Rating': '300 m',
-            'Weight': '32 kg', 'Max Speed': '3 knots', 'Battery': 'Li-Po 36V',
-            'Autonomy': '2 hours', 'Cameras': '1x Stereo'
+            'Length': '0.75 m', 'Width': '0.5 m', 'Depth Rating': '200 m',
+            'Weight': '~35 kg', 'Max Speed': '4 knots', 'Battery': 'Li-Po 48V',
+            'Autonomy': '3 hours', 'Cameras': '2x Stereo + 1x Mono'
         },
         highlights: [
-            { icon: 'fa-ruler-combined', value: '0.9m', label: 'Length' },
-            { icon: 'fa-weight-hanging', value: '32kg', label: 'Weight' },
-            { icon: 'fa-water', value: '300m', label: 'Depth' },
-            { icon: 'fa-gauge-high', value: '3 kn', label: 'Speed' }
-        ]
+            { icon: 'fa-ruler-combined', value: '0.75m', label: 'Length' },
+            { icon: 'fa-weight-hanging', value: '~35kg', label: 'Weight' },
+            { icon: 'fa-water', value: '200m', label: 'Depth' },
+            { icon: 'fa-gauge-high', value: '4 kn', label: 'Speed' }
+        ],
+        detailPage: 'varuna.html'
     },
-    lapras2: {
+    varuna3: {
         name: 'VARUNA 3.0',
         gen: '3.0',
         img: 'assets/images/bots/varuna-3.0.png',
@@ -69,6 +70,23 @@ const botsData = {
             { icon: 'fa-weight-hanging', value: '52kg', label: 'Weight' },
             { icon: 'fa-water', value: '600m', label: 'Depth' },
             { icon: 'fa-gauge-high', value: '5 kn', label: 'Speed' }
+        ]
+    },
+    kujagara: {
+        name: 'KUJAGARA 1.0',
+        gen: '1.0',
+        img: 'assets/images/arkaja bot.jpg.png',
+        desc: 'The original AUV platform that started it all — a foundational design that established DTU AUV\'s engineering legacy.',
+        specs: {
+            'Length': '0.9 m', 'Width': '0.45 m', 'Depth Rating': '300 m',
+            'Weight': '32 kg', 'Max Speed': '3 knots', 'Battery': 'Li-Po 44V',
+            'Autonomy': '2 hours', 'Cameras': '1x Mono'
+        },
+        highlights: [
+            { icon: 'fa-ruler-combined', value: '0.9m', label: 'Length' },
+            { icon: 'fa-weight-hanging', value: '32kg', label: 'Weight' },
+            { icon: 'fa-water', value: '300m', label: 'Depth' },
+            { icon: 'fa-gauge-high', value: '3 kn', label: 'Speed' }
         ]
     }
 };
@@ -93,10 +111,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // Positions: far-left, left, center, right, far-right
     const positions = {
         center:    { x: 0,    z: 0,   rotateY: 0,    scale: 1,    opacity: 1   },
-        left:      { x: -340, z: -120, rotateY: 25,   scale: 0.82, opacity: 0.9 },
-        right:     { x: 340,  z: -120, rotateY: -25,  scale: 0.82, opacity: 0.9 },
-        farLeft:   { x: -560, z: -240, rotateY: 40,   scale: 0.65, opacity: 0.5 },
-        farRight:  { x: 560,  z: -240, rotateY: -40,  scale: 0.65, opacity: 0.5 },
+        left:      { x: -340, z: -100, rotateY: 14,   scale: 0.82, opacity: 0.9 },
+        right:     { x: 340,  z: -100, rotateY: -14,  scale: 0.82, opacity: 0.9 },
+        farLeft:   { x: -560, z: -200, rotateY: 22,   scale: 0.65, opacity: 0.5 },
+        farRight:  { x: 560,  z: -200, rotateY: -22,  scale: 0.65, opacity: 0.5 },
         hidden:    { x: 0,    z: -400, rotateY: 0,    scale: 0.4,  opacity: 0   }
     };
 
@@ -173,11 +191,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Explore button — opens detail overlay
+    // Explore button — opens detail overlay or navigates to detail page
     document.querySelectorAll('.ccard-explore').forEach(btn => {
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            openDetail(btn.dataset.bot);
+            // If it's an <a> tag, let the browser follow the link
+            if (btn.tagName === 'A') return;
+            const botKey = btn.dataset.bot;
+            const bot = botsData[botKey];
+            // If bot has a dedicated detail page, navigate there
+            if (bot && bot.detailPage) {
+                window.location.href = bot.detailPage;
+                return;
+            }
+            openDetail(botKey);
         });
     });
 

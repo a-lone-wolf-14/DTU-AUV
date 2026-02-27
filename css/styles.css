@@ -330,13 +330,21 @@ img {
     transform: scale(1.05);
 }
 
+.svg-white {
+  fill: #ffffff !important;
+  color: #ffffff;
+  stroke: #ffffff;
+  filter: brightness(0) invert(1);
+}
+
 .hero-stats {
     position: absolute;
-    right: 80px;
+    right: -80px;
     bottom: -20px;
     background: var(--bg-light);
     padding: 20px 30px;
     border-radius: 16px;
+    filter: drop-shadow(0.5rem 0.5rem 0.75rem rgba(105, 104, 105, 0.219));
 }
 
 .stat-number {
