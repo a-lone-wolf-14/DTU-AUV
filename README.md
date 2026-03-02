@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # DTU AUV — Official Website
 
 > Autonomous Underwater Vehicle team at Delhi Technological University
@@ -61,3 +62,6 @@ Open `index.html` in any browser — no build step required.
 ## License
 
 © DTU AUV. All rights reserved.
+=======
+# DTU-AUV
+>>>>>>> 3d8b86d646fc3c16158d935fc91c838b96eed68e
