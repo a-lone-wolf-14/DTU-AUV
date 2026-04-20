@@ -21,7 +21,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-<<<<<<< HEAD
 // ========== MOBILE MENU TOGGLE ==========
 const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
 const navLinksContainer = document.querySelector('.nav-links');
@@ -55,8 +54,6 @@ if (mobileMenuBtn && navLinksContainer) {
     });
 }
 
-=======
->>>>>>> 29eb3300b577327feb75de72bd80e871f17b7440
 // ========== ACTIVE NAV LINK ON SCROLL ==========
 const sections = document.querySelectorAll('section[id]');
 const navLinks = document.querySelectorAll('.nav-links a');

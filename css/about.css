@@ -20,7 +20,6 @@ body.about-page .nav-links a:hover,
 body.about-page .nav-links a.active { color: #fff !important; }
 body.about-page .nav-links a::after { background: var(--accent-coral, #ff6348) !important; }
 
-<<<<<<< HEAD
 body.about-page .mobile-menu-btn { color: rgba(255,255,255,0.9) !important; }
 
 @media (max-width: 768px) {
@@ -29,8 +28,6 @@ body.about-page .mobile-menu-btn { color: rgba(255,255,255,0.9) !important; }
     body.about-page .nav-links a.active { color: #ff6348 !important; }
 }
 
-=======
->>>>>>> 29eb3300b577327feb75de72bd80e871f17b7440
 body.about-page .nav-search {
     background: rgba(255,255,255,0.06) !important;
     border-color: rgba(255,255,255,0.07) !important;
@@ -817,11 +814,7 @@ body.about-page .search-btn:hover { color: rgba(255,255,255,0.85) !important; }
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
-<<<<<<< HEAD
     align-items: stretch;
-=======
-    align-items: start;
->>>>>>> 29eb3300b577327feb75de72bd80e871f17b7440
 }
 
 .lead-card {
@@ -1228,7 +1221,6 @@ body.about-page .search-btn:hover { color: rgba(255,255,255,0.85) !important; }
         margin-bottom: 48px;
     }
 
-<<<<<<< HEAD
     .comp-grid, .bento-grid, .lead-grid {
         display: flex;
         overflow-x: auto;
@@ -1254,29 +1246,6 @@ body.about-page .search-btn:hover { color: rgba(255,255,255,0.85) !important; }
         scroll-snap-align: center;
         flex-shrink: 0;
         white-space: normal;
-=======
-    .comp-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .comp-grid .comp-card:nth-child(3) {
-        grid-column: span 1;
-        max-width: none;
-    }
-
-    .bento-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .bento-card--wide {
-        grid-column: span 1;
-    }
-
-    .lead-grid {
-        grid-template-columns: 1fr;
-        max-width: 420px;
-        margin: 0 auto;
->>>>>>> 29eb3300b577327feb75de72bd80e871f17b7440
     }
 
     .lead-card--featured {
@@ -1306,7 +1275,6 @@ body.about-page .search-btn:hover { color: rgba(255,255,255,0.85) !important; }
     }
 
     .stats-bar {
-<<<<<<< HEAD
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 28px 16px;
@@ -1319,16 +1287,6 @@ body.about-page .search-btn:hover { color: rgba(255,255,255,0.85) !important; }
 
     .stat-divider {
         display: none;
-=======
-        flex-direction: column;
-        gap: 28px;
-        padding: 36px 28px;
-    }
-
-    .stat-divider {
-        width: 60%;
-        height: 1px;
->>>>>>> 29eb3300b577327feb75de72bd80e871f17b7440
     }
 
     .globe-panel {
@@ -1361,11 +1319,7 @@ body.about-page .search-btn:hover { color: rgba(255,255,255,0.85) !important; }
     }
 
     .stat-val {
-<<<<<<< HEAD
         font-size: 2rem;
-=======
-        font-size: 2.4rem;
->>>>>>> 29eb3300b577327feb75de72bd80e871f17b7440
     }
 
     .comp-card {

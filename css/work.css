@@ -22,7 +22,6 @@ body.work-page .nav-links a:hover,
 body.work-page .nav-links a.active { color: #fff; }
 body.work-page .nav-links a::after { background: var(--accent-coral); }
 
-<<<<<<< HEAD
 body.work-page .mobile-menu-btn { color: rgba(255,255,255,0.9) !important; }
 
 @media (max-width: 768px) {
@@ -31,8 +30,6 @@ body.work-page .mobile-menu-btn { color: rgba(255,255,255,0.9) !important; }
     body.work-page .nav-links a.active { color: #ff6348 !important; }
 }
 
-=======
->>>>>>> 29eb3300b577327feb75de72bd80e871f17b7440
 body.work-page .nav-search {
     background: rgba(255,255,255,0.06);
     border-color: rgba(255,255,255,0.07);
@@ -207,7 +204,6 @@ body.work-page .search-btn:hover { color: rgba(255,255,255,0.85); }
 }
 
 
-<<<<<<< HEAD
 /* ---------- Interactive Tag ---------- */
 .ccard-interactive-tag {
     position: absolute;
@@ -237,8 +233,6 @@ body.work-page .search-btn:hover { color: rgba(255,255,255,0.85); }
     opacity: 1;
 }
 
-=======
->>>>>>> 29eb3300b577327feb75de72bd80e871f17b7440
 /* ---------- Card Image ---------- */
 .ccard-img-wrap {
     position: absolute;
@@ -819,7 +813,6 @@ body.work-page .search-btn:hover { color: rgba(255,255,255,0.85); }
         height: 330px;
     }
 
-<<<<<<< HEAD
     .ccard-interactive-tag {
         font-size: 0.55rem;
         padding: 4px 8px;
@@ -827,8 +820,6 @@ body.work-page .search-btn:hover { color: rgba(255,255,255,0.85); }
         left: 14px;
     }
 
-=======
->>>>>>> 29eb3300b577327feb75de72bd80e871f17b7440
     .ccard-name {
         font-size: 1.2rem;
     }
