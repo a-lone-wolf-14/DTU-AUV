@@ -1,0 +1,590 @@
+/* ============================================================
+   TEAM PAGE — MEMBER DETAIL OVERLAY
+   team.css  –  DTU AUV
+   Redesigned: floating-card composition around central photo
+   ============================================================ */
+
+/* ── Cursor upgrade on cards ─────────────────────────────── */
+.team-card { cursor: pointer; }
+.team-card.is-selected .team-blob {
+    border-radius: 58% 42% 38% 62% / 60% 58% 42% 40%;
+    opacity: 1;
+    background: linear-gradient(135deg, #ff6348, #c94030);
+    transform: translateX(-50%) scale(1.08);
+}
+
+/* ============================================================
+   OVERLAY BACKDROP
+   ============================================================ */
+.member-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    pointer-events: none;
+    opacity: 0;
+    overflow-y: auto;
+    transition: opacity 0.45s ease;
+}
+.member-overlay.active {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.member-backdrop {
+    position: fixed;
+    inset: 0;
+    cursor: pointer;
+    background-image:
+        radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px),
+        radial-gradient(rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 28px 28px, 56px 56px;
+    background-color: rgba(4, 6, 14, 0.94);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+/* ============================================================
+   COMPOSITION WRAPPER  (outer container for everything)
+   ============================================================ */
+.member-composition {
+    position: relative;
+    z-index: 10;
+    width: 700px;
+    max-width: 96vw;
+    margin: 50px auto 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transform: translateY(28px) scale(0.97);
+    opacity: 0;
+    transition: transform 0.5s cubic-bezier(0.22,1,0.36,1),
+                opacity 0.4s ease;
+}
+.member-overlay.active .member-composition {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+/* ============================================================
+   CLOSE BUTTON
+   ============================================================ */
+.mp-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.06);
+    color: rgba(255,255,255,0.6);
+    font-size: 1.05rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+.mp-close:hover {
+    background: rgba(255,99,72,0.2);
+    border-color: rgba(255,99,72,0.5);
+    color: #ff6348;
+}
+
+/* ============================================================
+   PHOTO AREA  (relative container for photo + floating cards)
+   ============================================================ */
+.mp-photo-area {
+    position: relative;
+    width: 420px;
+    /* enough vertical space for the main card + overflow of floating cards */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+/* ============================================================
+   FLOATING LOGO ICON  (top-left of photo area)
+   ============================================================ */
+.mp-logo-float {
+    position: absolute;
+    top: 20px;
+    left: -60px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.6);
+    backdrop-filter: blur(10px);
+    z-index: 25;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.4s ease 0.15s, transform 0.5s cubic-bezier(0.22,1,0.36,1) 0.15s;
+}
+.member-overlay.active .mp-logo-float {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ============================================================
+   MAIN PHOTO CARD  (centered in photo area)
+   ============================================================ */
+.mp-main-card {
+    position: relative;
+    width: 380px;
+    height: 480px;
+    border-radius: 24px;
+    overflow: hidden;
+    background: linear-gradient(160deg, #110f20, #1a1228);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.5),
+                0 0 0 1px rgba(255,255,255,0.06);
+    flex-shrink: 0;
+    z-index: 5;
+}
+
+.mp-main-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.6s ease;
+}
+.mp-main-card:hover .mp-main-photo {
+    transform: scale(1.03);
+}
+
+.mp-main-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(10,8,20,0.7) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Placeholder when no photo */
+.mp-photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    color: rgba(255,255,255,0.1);
+}
+
+/* ============================================================
+   FLOATING CARDS  (absolutely positioned relative to .mp-photo-area)
+   Base styles shared by all floating cards
+   ============================================================ */
+.mp-card {
+    position: absolute;
+    border-radius: 18px;
+    padding: 16px 18px;
+    box-shadow: 0 14px 40px rgba(0,0,0,0.45);
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1);
+    pointer-events: none;
+    z-index: 20;
+}
+.member-overlay.active .mp-card {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Card header row (title + arrow/badge) */
+.mp-card__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+.mp-card__title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+.mp-card__arrow {
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+/* Card user row (avatar + name + pct) */
+.mp-card__user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+.mp-card__avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid rgba(255,255,255,0.15);
+}
+.mp-card__user-name {
+    font-size: 0.72rem;
+    font-weight: 600;
+    line-height: 1.2;
+}
+.mp-card__user-pct {
+    font-size: 0.65rem;
+    font-weight: 500;
+    opacity: 0.6;
+}
+
+/* ── Contributions card ─── top-right, overlapping photo ──── */
+.mp-card--messages {
+    top: -10px;
+    right: -80px;
+    width: 160px;
+    background: rgba(240, 238, 235, 0.95);
+    border: none;
+    color: #1a1a2e;
+    transform: translateY(-16px);
+    transition-delay: 0.2s;
+    z-index: 30;
+}
+.member-overlay.active .mp-card--messages {
+    transform: translateY(0);
+}
+.mp-card--messages .mp-card__title {
+    color: #1a1a2e;
+    font-size: 0.82rem;
+    font-weight: 700;
+}
+.mp-card__badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 24px;
+    height: 22px;
+    padding: 0 7px;
+    border-radius: 12px;
+    background: #ff4433;
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+}
+.mp-card__thumb-wrap {
+    width: 100%;
+    height: 80px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 4px;
+    background: rgba(0,0,0,0.08);
+}
+.mp-card__thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+/* ── Knowledge card ─── bottom-left, overlapping photo ────── */
+.mp-card--knowledge {
+    bottom: 30px;
+    left: -90px;
+    width: 190px;
+    background: rgba(26, 28, 44, 0.82);
+    border: 1px solid rgba(255,255,255,0.09);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    color: #fff;
+    transform: translate(-16px, 0);
+    transition-delay: 0.14s;
+    z-index: 30;
+}
+.member-overlay.active .mp-card--knowledge {
+    transform: translate(0, 0);
+}
+.mp-card--knowledge .mp-card__title {
+    color: rgba(255,255,255,0.85);
+}
+.mp-card--knowledge .mp-card__arrow {
+    color: rgba(255,255,255,0.5);
+}
+.mp-card__big-char {
+    font-size: 4.2rem;
+    font-weight: 900;
+    line-height: 1;
+    color: #fff;
+    margin: 4px 0 6px;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -1px;
+}
+.mp-card--knowledge .mp-card__user-name { color: rgba(255,255,255,0.85); }
+.mp-card--knowledge .mp-card__user-pct  { color: #70e07a; }
+
+/* ── Efficiency card ─── bottom-right, overlapping photo ──── */
+.mp-card--efficiency {
+    bottom: -30px;
+    right: -80px;
+    width: 210px;
+    background: linear-gradient(135deg, #ff6348 0%, #e04528 100%);
+    border: none;
+    color: #fff;
+    transform: translateY(16px);
+    transition-delay: 0.26s;
+    box-shadow: 0 14px 44px rgba(255,99,72,0.35);
+    z-index: 30;
+}
+.member-overlay.active .mp-card--efficiency {
+    transform: translateY(0);
+}
+.mp-card--efficiency .mp-card__title { color: rgba(255,255,255,0.9); }
+.mp-card--efficiency .mp-card__arrow { color: rgba(255,255,255,0.6); }
+.mp-card--efficiency .mp-card__user-name { color: #fff; }
+.mp-card--efficiency .mp-card__user-pct  { color: rgba(255,255,255,0.7); }
+
+/* Bar chart visualization (vertical bars) */
+.mp-card__bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 3px;
+    height: 48px;
+    margin: 2px 0 4px;
+}
+.mp-card__bar {
+    flex: 1;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.35);
+    min-width: 4px;
+    transition: height 0.6s cubic-bezier(0.22,1,0.36,1);
+}
+
+/* Dotted bar pattern variant */
+.mp-card__bars--dotted {
+    gap: 2px;
+}
+.mp-card__bars--dotted .mp-card__bar {
+    background: rgba(255,255,255,0.5);
+    border-radius: 1.5px;
+}
+
+/* ============================================================
+   BRAND TEXT  (bottom of composition)
+   ============================================================ */
+.mp-brand {
+    width: 100%;
+    text-align: left;
+    margin-top: 20px;
+    font-family: 'Inter', monospace;
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.12);
+    opacity: 0;
+    transition: opacity 0.6s ease 0.4s;
+}
+.member-overlay.active .mp-brand {
+    opacity: 1;
+}
+
+/* ============================================================
+   DETAILS SECTION  (below the visual composition)
+   ============================================================ */
+.mp-details {
+    width: 100%;
+    max-width: 480px;
+    margin-top: 50px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.4s ease 0.3s, transform 0.5s cubic-bezier(0.22,1,0.36,1) 0.3s;
+}
+.member-overlay.active .mp-details {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mp-details__role {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #ff6348;
+    margin-bottom: 8px;
+}
+.mp-details__name {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.15;
+    margin: 0 0 12px;
+}
+.mp-details__bio {
+    font-size: 0.85rem;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.45);
+    margin: 0 0 20px;
+}
+
+/* ── Skills tags ──────────────────────────────────────────── */
+.mp-details__skills {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 18px;
+}
+.mp-skill-tag {
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 5px 14px;
+    border-radius: 100px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.6);
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.mp-skill-tag:hover {
+    border-color: rgba(255,99,72,0.5);
+    color: #ff8570;
+    background: rgba(255,99,72,0.08);
+}
+
+/* ── Social links ─────────────────────────────────────────── */
+.mp-details__social {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.mp-details__social a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, background 0.2s, transform 0.2s;
+}
+.mp-details__social a:hover {
+    border-color: rgba(255,99,72,0.5);
+    color: #ff6348;
+    background: rgba(255,99,72,0.1);
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 860px) {
+    .member-composition {
+        width: auto;
+        max-width: 96vw;
+    }
+    .mp-photo-area {
+        width: 380px;
+    }
+    .mp-card--messages  { right: -40px; }
+    .mp-card--knowledge { left: -40px;  }
+    .mp-card--efficiency { right: -40px; }
+}
+
+@media (max-width: 680px) {
+    .mp-photo-area {
+        width: 320px;
+    }
+    .mp-main-card {
+        width: 300px;
+        height: 400px;
+    }
+    /* Tuck floating cards closer */
+    .mp-card--knowledge {
+        bottom: 10px;
+        left: -30px;
+        width: 160px;
+    }
+    .mp-card--efficiency {
+        bottom: -20px;
+        right: -30px;
+        width: 170px;
+    }
+    .mp-card--messages {
+        top: -5px;
+        right: -20px;
+        width: 130px;
+    }
+    .mp-card__big-char {
+        font-size: 2.8rem;
+    }
+    .mp-logo-float { display: none; }
+    .mp-brand { display: none; }
+    .mp-details__name { font-size: 1.6rem; }
+}
+
+@media (max-width: 420px) {
+    .mp-photo-area {
+        width: 280px;
+    }
+    .mp-main-card {
+        width: 260px;
+        height: 340px;
+    }
+    .mp-card { display: none; }
+    .mp-close { top: 8px; right: 8px; }
+    .mp-details {
+        margin-top: 24px;
+    }
+}
+
+/* ============================================================
+   RESPONSIVE OVERRIDES FOR TEAM PAGE
+   Force 2x2 grid instead of shared horizontal carousel
+   ============================================================ */
+@media (max-width: 768px) {
+    .team-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        overflow: visible !important;
+        gap: 16px !important;
+        padding-bottom: 0 !important;
+    }
+    
+    .team-card {
+        min-width: 0 !important;
+        max-width: none !important;
+        width: 100% !important;
+        scroll-snap-align: none !important;
+    }
+    
+    /* Scale down inner elements so two fit horizontally */
+    .team-img-wrapper {
+        width: 110px !important;
+        height: 125px !important;
+    }
+    .team-blob {
+        width: 95px !important;
+        height: 105px !important;
+    }
+    .team-photo {
+        width: 85px !important;
+        height: 100px !important;
+    }
+    .team-role {
+        font-size: 0.65rem !important;
+        letter-spacing: 1px !important;
+    }
+    .team-name {
+        font-size: 1.05rem !important;
+    }
+}
