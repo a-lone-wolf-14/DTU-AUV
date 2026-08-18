@@ -610,7 +610,7 @@ img {
 
 .services-header {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-bottom: 60px;
 }
@@ -623,17 +623,13 @@ img {
     line-height: 1.1;
 }
 
-.services-nav {
-    display: flex;
-    gap: 12px;
-}
-
+/* ---------- Edge Arrows — pinned to either end of the stage ---------- */
 .nav-arrow {
     width: 48px;
     height: 48px;
     border-radius: 50%;
     border: 2px solid var(--border-light);
-    background: transparent;
+    background: var(--bg-white);
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -643,25 +639,77 @@ img {
     transition: var(--transition-fast);
 }
 
+.nav-arrow--left,
+.nav-arrow--right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 30;
+}
+
+.nav-arrow--left { left: 0; }
+.nav-arrow--right { right: 0; }
+
 .nav-arrow:hover {
     background: var(--text-dark);
     color: var(--text-light);
     border-color: var(--text-dark);
+    transform: translateY(-50%) scale(1.08);
 }
 
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+.nav-arrow.is-disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ============================================================
+   OUR WORK — Paged Carousel
+   Page 1: Mechanical, Embedded, Software (3 cards)
+   Page 2: R&D, Corporate (2 cards)
+   ============================================================ */
+
+.services-stage {
+    position: relative;
+    width: 100%;
+    padding: 0 70px;
+}
+
+.services-viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+.services-slider {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.services-page {
+    display: flex;
+    flex-shrink: 0;
+    width: 100%;
+    gap: 28px;
+    justify-content: center;
+    align-items: stretch;
 }
 
 .service-card {
+    position: relative;
+    flex: 1 1 300px;
+    max-width: 340px;
+    min-height: 400px;
     background: var(--bg-dark);
     border-radius: 20px;
-    padding: 40px 30px;
-    transition: var(--transition);
-    position: relative;
+    padding: 36px 28px;
     overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3), 0 0 60px rgba(255, 99, 72, 0.08);
 }
 
 .service-card::before {
@@ -674,11 +722,7 @@ img {
     background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 60%);
     opacity: 0;
     transition: var(--transition);
-}
-
-.service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
 }
 
 .service-card:hover::before {
@@ -697,12 +741,19 @@ img {
     color: var(--text-light);
     margin-bottom: 24px;
     transition: var(--transition);
+    position: relative;
+    z-index: 1;
 }
 
 .service-card:hover .service-icon {
     background: var(--text-light);
     color: var(--text-dark);
     border-color: var(--text-light);
+}
+
+.service-card-body {
+    position: relative;
+    z-index: 1;
 }
 
 .service-card h3 {
@@ -1236,6 +1287,27 @@ img {
     letter-spacing: 0.5px;
 }
 
+.address-map-link {
+    width: 40px;
+    height: 40px;
+    margin-top: 14px;
+    border: 1px solid var(--border-dark);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    transition: var(--transition-fast);
+}
+
+.address-map-link:hover {
+    background: var(--text-light);
+    color: var(--text-dark);
+    border-color: var(--text-light);
+    transform: translateY(-3px);
+}
+
 .footer-col .mt {
     margin-top: 24px;
 }
@@ -1460,24 +1532,37 @@ img {
         flex-wrap: wrap;
     }
 
-    .services-grid {
-        display: flex;
+    .services-stage {
+        padding: 0 44px;
+    }
+
+    .services-page {
         overflow-x: auto;
+        justify-content: flex-start;
         scroll-snap-type: x mandatory;
-        gap: 20px;
-        padding-bottom: 20px;
         scrollbar-width: none;
     }
-    .services-grid::-webkit-scrollbar { display: none; }
-    
-    .service-card {
-        min-width: 85%;
-        max-width: 85%;
-        width: 85%;
-        scroll-snap-align: center;
-        flex-shrink: 0;
-        white-space: normal;
+
+    .services-page::-webkit-scrollbar {
+        display: none;
     }
+
+    .service-card {
+        flex: 0 0 82%;
+        max-width: 82%;
+        min-height: 360px;
+        padding: 32px 24px;
+        scroll-snap-align: center;
+    }
+
+    .nav-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 0.75rem;
+    }
+
+    .nav-arrow--left { left: -6px; }
+    .nav-arrow--right { right: -6px; }
 
     .poss-content {
         grid-template-columns: 1fr;

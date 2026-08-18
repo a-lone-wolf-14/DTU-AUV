@@ -138,6 +138,7 @@ body.work-page .search-btn:hover { color: rgba(255,255,255,0.85); }
    ============================================================ */
 
 .carousel-stage {
+    position: relative;
     width: 100%;
     perspective: 1200px;
     overflow: visible;
@@ -158,6 +159,8 @@ body.work-page .search-btn:hover { color: rgba(255,255,255,0.85); }
 /* ---------- Individual Card ---------- */
 .ccard {
     position: absolute;
+    top: 50%;
+    left: 50%;
     width: 320px;
     height: 460px;
     border-radius: 24px;
@@ -230,6 +233,35 @@ body.work-page .search-btn:hover { color: rgba(255,255,255,0.85); }
 }
 
 .ccard.is-center .ccard-interactive-tag {
+    opacity: 1;
+}
+
+/* ---------- Legacy Series Tag ---------- */
+.ccard-legacy-tag {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    background: rgba(255,159,67,0.15);
+    color: #ff9f43;
+    border: 1px solid rgba(255,159,67,0.3);
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    z-index: 20;
+    pointer-events: none;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.ccard.is-center .ccard-legacy-tag {
     opacity: 1;
 }
 
@@ -371,34 +403,54 @@ body.work-page .search-btn:hover { color: rgba(255,255,255,0.85); }
 .showcase-nav {
     display: flex;
     align-items: center;
-    gap: 24px;
+    justify-content: center;
     opacity: 0;
     animation: showcaseFadeUp 0.8s ease forwards 0.8s;
 }
 
+/* ---------- Edge Arrows — pinned to either end of the carousel stage ---------- */
 .nav-arrow {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     border: 1px solid rgba(255,255,255,0.08);
     background: rgba(255,255,255,0.05);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     color: rgba(255,255,255,0.4);
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
+    z-index: 30;
+}
+
+.nav-arrow--left,
+.nav-arrow--right {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.nav-arrow--left {
+    left: 0;
+}
+
+.nav-arrow--right {
+    right: 0;
 }
 
 .nav-arrow:hover {
     background: rgba(255,255,255,0.12);
     color: #fff;
     border-color: rgba(255,255,255,0.2);
-    transform: scale(1.08);
+    transform: translateY(-50%) scale(1.08);
 }
+
+.nav-arrow--left:hover { transform: translateY(-50%) scale(1.08); }
+.nav-arrow--right:hover { transform: translateY(-50%) scale(1.08); }
 
 .nav-dots {
     display: flex;
@@ -747,6 +799,73 @@ body.work-page .search-btn:hover { color: rgba(255,255,255,0.85); }
 }
 
 
+/* ---------- In-Depth Spec Blocks (mass / chassis / thrusters / sensors) ---------- */
+
+.spec-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin-top: 20px;
+}
+
+.spec-block {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: specRowFadeIn 0.4s ease forwards;
+}
+
+.spec-block-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-coral);
+    margin-bottom: 10px;
+}
+
+.spec-block-title i {
+    font-size: 0.75rem;
+}
+
+.spec-sublist {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.03);
+}
+
+.spec-subitem {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 10px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.spec-subitem:last-child {
+    border-bottom: none;
+}
+
+.spec-subitem-key {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.45);
+    flex-shrink: 0;
+}
+
+.spec-subitem-val {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: right;
+}
+
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */
@@ -801,6 +920,15 @@ body.work-page .search-btn:hover { color: rgba(255,255,255,0.85); }
     .detail-bot-img {
         max-height: 220px;
     }
+
+    .nav-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 0.75rem;
+    }
+
+    .nav-arrow--left { left: -4px; }
+    .nav-arrow--right { right: -4px; }
 }
 
 @media (max-width: 600px) {
@@ -813,12 +941,22 @@ body.work-page .search-btn:hover { color: rgba(255,255,255,0.85); }
         height: 330px;
     }
 
-    .ccard-interactive-tag {
+    .ccard-interactive-tag,
+    .ccard-legacy-tag {
         font-size: 0.55rem;
         padding: 4px 8px;
         top: 14px;
         left: 14px;
     }
+
+    .nav-arrow {
+        width: 34px;
+        height: 34px;
+        font-size: 0.65rem;
+    }
+
+    .nav-arrow--left { left: -2px; }
+    .nav-arrow--right { right: -2px; }
 
     .ccard-name {
         font-size: 1.2rem;

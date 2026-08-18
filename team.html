@@ -7,6 +7,8 @@
     <link rel="icon" type="image/png" href="assets/images/logo-auv-favicon.png">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/team.css">
+    <!-- Auto-grow override: keep this AFTER team.css -->
+    <link rel="stylesheet" href="css/team-grid-auto.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -48,97 +50,13 @@
     <!-- ========== TEAM GRID ========== -->
     <section class="team-section">
         <div class="team-container">
-            <div class="team-grid">
-                <!-- Row 1 -->
-                <div class="team-card anim-fade-up" data-member="zack-hill">
-                    <div class="team-img-wrapper">
-                        <div class="team-blob"></div>
-                        <div class="team-photo">
-                            <img src="assets\images\team\profile blank.jpg" alt="Zack Hill">
-                        </div>
-                    </div>
-                    <span class="team-role">Team Lead & Project Director</span>
-                    <h3 class="team-name">Zack Hill</h3>
-                    <a href="mailto:zack@few.io" class="team-email">zack@few.io</a>
-                </div>
-                <div class="team-card anim-fade-up delay-1" data-member="arlton-lowry">
-                    <div class="team-img-wrapper">
-                        <div class="team-blob"></div>
-                        <div class="team-photo">
-                            <img src="assets\images\team\profile blank.jpg" alt="Arlton Lowry">
-                        </div>
-                    </div>
-                    <span class="team-role">Chief Communications Officer</span>
-                    <h3 class="team-name">Arlton Lowry</h3>
-                    <a href="mailto:arlton@few.io" class="team-email">arlton@few.io</a>
-                </div>
-                <div class="team-card anim-fade-up delay-2" data-member="sarah-devine">
-                    <div class="team-img-wrapper">
-                        <div class="team-blob"></div>
-                        <div class="team-photo">
-                            <img src="assets\images\team\profile blank.jpg" alt="Sarah Devine">
-                        </div>
-                    </div>
-                    <span class="team-role">Director of Projects</span>
-                    <h3 class="team-name">Sarah Devine</h3>
-                    <a href="mailto:sarah@few.io" class="team-email">sarah@few.io</a>
-                </div>
-                <div class="team-card anim-fade-up delay-3" data-member="will-carter">
-                    <div class="team-img-wrapper">
-                        <div class="team-blob"></div>
-                        <div class="team-photo">
-                            <img src="assets\images\team\profile blank.jpg" alt="Will Carter">
-                        </div>
-                    </div>
-                    <span class="team-role">Electronics & Accounts Lead</span>
-                    <h3 class="team-name">Will Carter</h3>
-                    <a href="mailto:will@few.io" class="team-email">will@few.io</a>
-                </div>
-                <!-- Row 2 -->
-                <div class="team-card anim-fade-up" data-member="brent-fulford">
-                    <div class="team-img-wrapper">
-                        <div class="team-blob"></div>
-                        <div class="team-photo">
-                            <img src="assets\images\team\profile blank.jpg" alt="Brent Fulford">
-                        </div>
-                    </div>
-                    <span class="team-role">Software & Controls Lead</span>
-                    <h3 class="team-name">Brent Fulford</h3>
-                    <a href="mailto:brent@few.io" class="team-email">brent@few.io</a>
-                </div>
-                <div class="team-card anim-fade-up delay-1" data-member="correne-spero">
-                    <div class="team-img-wrapper">
-                        <div class="team-blob"></div>
-                        <div class="team-photo">
-                            <img src="assets\images\team\profile blank.jpg" alt="Correne Spero">
-                        </div>
-                    </div>
-                    <span class="team-role">Finance & Administration</span>
-                    <h3 class="team-name">Correne Spero</h3>
-                    <a href="mailto:spero@few.io" class="team-email">spero@few.io</a>
-                </div>
-                <div class="team-card anim-fade-up delay-2" data-member="calvin-bramlett">
-                    <div class="team-img-wrapper">
-                        <div class="team-blob"></div>
-                        <div class="team-photo">
-                            <img src="assets\images\team\profile blank.jpg" alt="Calvin Bramlett">
-                        </div>
-                    </div>
-                    <span class="team-role">Senior Hardware Designer</span>
-                    <h3 class="team-name">Calvin Bramlett</h3>
-                    <a href="mailto:calvin@few.io" class="team-email">calvin@few.io</a>
-                </div>
-                <div class="team-card anim-fade-up delay-3" data-member="john-cater">
-                    <div class="team-img-wrapper">
-                        <div class="team-blob"></div>
-                        <div class="team-photo">
-                            <img src="assets\images\team\profile blank.jpg" alt="John Cater">
-                        </div>
-                    </div>
-                    <span class="team-role">Senior UI / UX Designer</span>
-                    <h3 class="team-name">John Cater</h3>
-                    <a href="mailto:john@few.io" class="team-email">john@few.io</a>
-                </div>
+            <!--
+                Cards are generated automatically from js/team-data.js
+                by js/team-render.js. To add/remove/edit team members,
+                edit js/team-data.js only — do not add cards here by hand.
+            -->
+            <div class="team-grid" id="teamGrid">
+                <!-- Team cards are injected here at runtime -->
             </div>
         </div>
     </section>
@@ -209,6 +127,16 @@
         </div>
     </footer>
 
+    <!--
+        Order matters here: team-data.js + team-render.js build the
+        team cards FIRST, so that script.js's scroll-reveal animation
+        (which looks for .anim-fade-up elements) finds them already
+        in the page instead of finding an empty grid. team.js (the
+        click-to-open member popup) loads last since it needs the
+        cards to already exist too.
+    -->
+    <script src="js/team-data.js"></script>
+    <script src="js/team-render.js"></script>
     <script src="js/script.js"></script>
     <script src="js/team.js"></script>
 </body>

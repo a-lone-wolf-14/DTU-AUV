@@ -704,13 +704,42 @@ body.about-page .search-btn:hover { color: rgba(255,255,255,0.85) !important; }
     color: #ff6348;
 }
 
+.comp-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.comp-links a {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    padding: 7px 14px;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(224, 230, 240, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-decoration: none;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.comp-links a:hover {
+    background: rgba(255, 99, 72, 0.1);
+    color: #ff6348;
+    border-color: rgba(255, 99, 72, 0.25);
+}
+
 
 /* ============================================================
    03 — SUBSYSTEMS (Bento Grid)
    ============================================================ */
 .bento-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
 

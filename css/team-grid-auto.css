@@ -1,0 +1,34 @@
+/* ============================================================
+   TEAM GRID — AUTO-GROW OVERRIDE
+   ============================================================
+   Load this AFTER team.css. It replaces the fixed column count
+   with an auto-fill layout, so the grid automatically adds rows
+   as you add team members in team-data.js — no CSS edits needed
+   whether you have 4 members or 40.
+
+   Adjust the 240px minimum card width below if your cards are
+   noticeably wider/narrower than the current design.
+   ============================================================ */
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 2.5rem;
+}
+
+/* ============================================================
+   DISABLE FADE-UP REVEAL ON TEAM CARDS
+   ============================================================
+   Your site-wide styles.css hides .anim-fade-up elements at
+   opacity:0 until a scroll-reveal script adds a "visible" (or
+   similar) class. On this page that was unreliable, so we force
+   the team cards to always render fully visible, no animation,
+   no dependency on any reveal script running at all.
+   ============================================================ */
+.team-grid .team-card,
+.team-grid .anim-fade-up {
+  opacity: 1 !important;
+  transform: none !important;
+  visibility: visible !important;
+  transition: none !important;
+}

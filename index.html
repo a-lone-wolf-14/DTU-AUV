@@ -80,7 +80,7 @@
                 <div class="desc-icon">
                     <i class="fas fa-water"></i>
                 </div>
-                <p>Self-operating robotic submarines designed to perform complex tasks underwater without direct human control, using AI and real-time sensors.</p>
+                <p>We build the future of marine autonomy: developing cutting-edge surface boats, tethered ROVs, and fully independent AUVs that leverage AI and real-time sensor fusion to execute intricate underwater missions.</p>
             </div>
         </div>
     </section>
@@ -104,16 +104,21 @@
             </div>
             <div class="about-content anim-fade-left">
                 <span class="section-label">A B O U T &nbsp; U S</span>
-                <h2 class="section-title">THE DEEP<br>FRONTIER</h2>
+                <h2 class="section-title">THE PRECISION STRIKE<br>SUBSEA INTERVENTION<br>THE IRON TETHER</h2>
                 <div class="about-tags">
                     <span class="tag">Autonomy</span>
                     <span class="tag">Robotics</span>
                     <span class="tag">AI</span>
                 </div>
-                <p class="about-text">An AUV is a self-operating robotic submarine equipped with onboard computers, sensors, power systems, and propulsion units that allow it to make independent decisions based on programmed algorithms and real-time environmental data.</p>
+                <ul class="about-text">
+                    <li>An AUV is an untethered, fully intelligent robotic submarine engineered to operate independently in dynamic marine environments. Acting as its own captain, it relies on an onboard computational stack and an integrated sensor suite to map its surroundings, adapt to changing underwater conditions, and execute precise mission objectives—such as pipeline tracking or target localization—without a single line of communication to the surface.</li>
+
+                    <li>An ROV is a highly maneuverable, tethered robotic submarine designed for deep-subsea intervention where human presence is impossible but human oversight is critical. Connected to pilots on the surface via an umbilical cable that streams high-bandwidth video and telemetry, it combines real-time human intuition with stabilized thruster control and robotic manipulators to perform delicate, complex tasks like underwater inspection, maintenance, and heavy tool operation.</li>
+
+                    <li>An ASV is an intelligent surface craft optimized for long-endurance marine deployment and boundary-layer exploration. Operating at the intersection of air and water, it utilizes GPS, radar, and real-time environmental sensors to plot optimal paths, avoid obstacles, and survive rough sea states, serving as a vital communication relay, data aggregator, or aerial drone launchpad for underwater operations.</li>
+                </ul>
                 <div class="about-actions">
-                    <a href="#" class="btn-primary">Learn More</a>
-                    <a href="#" class="btn-text"><i class="fas fa-play-circle"></i> Watch a Video</a>
+                    <a href="about.html" class="btn-primary">Learn More</a>
                 </div>
             </div>
         </div>
@@ -124,36 +129,69 @@
         <div class="services-container">
             <div class="services-header">
                 <h2 class="section-title-dark anim-fade-up">OUR WORK</h2>
-                <div class="services-nav anim-fade-up">
-                    <button class="nav-arrow" id="prev-service"><i class="fas fa-chevron-left"></i></button>
-                    <button class="nav-arrow" id="next-service"><i class="fas fa-chevron-right"></i></button>
-                </div>
             </div>
-            <div class="services-grid">
-                <div class="service-card anim-fade-up">
-                    <div class="service-icon">
-                        <i class="fas fa-brain"></i>
+
+            <div class="services-stage" id="services-stage">
+                <button class="nav-arrow nav-arrow--left" id="prev-service" aria-label="Previous department">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="services-track" id="services-track">
+                    <div class="service-card" data-index="0">
+                        <div class="service-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <div class="service-card-body">
+                            <h3>Software Department</h3>
+                            <p>The cognitive core of our vehicles. We build integrated frameworks for Perception (computer vision object tracking), Autonomy (real-time path planning), and Control Systems that allow our bots to navigate the depths completely on their own.</p>
+                            <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
-                    <h3>AI & Computer Vision</h3>
-                    <p>Advanced artificial intelligence and computer vision systems for real-time object detection, path planning, and autonomous underwater navigation.</p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="service-card anim-fade-up">
-                    <div class="service-icon">
-                        <i class="fas fa-microchip"></i>
+                    <div class="service-card" data-index="1">
+                        <div class="service-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="service-card-body">
+                            <h3>Embedded Department</h3>
+                            <p>The vital bridge between data and action. We design custom PCBs and hardware interfaces utilizing IMUs and pressure sensors for precise depth tracking, backed by smart power circuits for safe battery regulation.</p>
+                            <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
-                    <h3>Embedded Systems</h3>
-                    <p>Custom embedded system design with IMUs for orientation tracking, pressure sensors for depth monitoring, and power distribution circuits for safe battery regulation.</p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="service-card anim-fade-up">
-                    <div class="service-icon">
-                        <i class="fas fa-drafting-compass"></i>
+                    <div class="service-card" data-index="2">
+                        <div class="service-icon">
+                            <i class="fas fa-drafting-compass"></i>
+                        </div>
+                        <div class="service-card-body">
+                            <h3>Mechanical Department</h3>
+                            <p>Built to defy immense underwater pressures. We design hydrodynamic hull structures, optimized multi-axis thruster layouts, and custom manipulation tools to turn complex CAD concepts into rugged, ocean-ready robots.</p>
+                            <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
                     </div>
-                    <h3>Mechanical Design</h3>
-                    <p>Precision-engineered hull structures, thruster configurations, and manipulation mechanisms for reliable deep-sea operation and mission execution.</p>
-                    <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                    <div class="service-card" data-index="3">
+                        <div class="service-icon">
+                            <i class="fas fa-building"></i>
+                        </div>
+                        <div class="service-card-body">
+                            <h3>Corporate Department</h3>
+                            <p>Driving the team's external partnerships and growth. We manage industry collaborations, sponsorships, outreach, and strategic relationships that connect DTU AUV with organizations shaping the future of marine technology.</p>
+                            <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="service-card" data-index="4">
+                        <div class="service-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <div class="service-card-body">
+                            <h3>R&amp;D Department</h3>
+                            <p>Exploring the technologies that push autonomous marine systems forward. We research, prototype, and validate new approaches in robotics, sensing, navigation, and intelligent underwater systems for the next generation of our vehicles.</p>
+                            <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
                 </div>
+
+                <button class="nav-arrow nav-arrow--right" id="next-service" aria-label="Next department">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </div>
     </section>
@@ -189,13 +227,13 @@
         <div class="testimonials-container">
             <div class="test-left anim-fade-right">
                 <h2 class="test-title">VOICES FROM<br>THE DEEP</h2>
-                <p class="test-desc">Hear from team members, mentors, and competition judges who have witnessed the evolution of autonomous underwater vehicles. Discover how our multidisciplinary approach to robotics, AI, and engineering is shaping the future of marine exploration.</p>
+                <p class="test-desc">Hear from team members and mentors who have witnessed the evolution of our autonomous underwater vehicles. Discover how our multidisciplinary approach to robotics and engineering is shaping the future of marine exploration.</p>
             </div>
             <div class="test-right anim-fade-left">
                 <div class="testimonial-card">
                     <div class="testimonial-content">
                         <p>"Working on LAPRAS 2.0 taught me more about embedded systems than any classroom ever could."</p>
-                        <h4>Team Lead, Electronics</h4>
+                        <h4>Marvin Rao, Team Captain</h4>
                     </div>
                     <div class="testimonial-avatar">
                         <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80" alt="James">
@@ -204,7 +242,7 @@
                 <div class="testimonial-card">
                     <div class="testimonial-content">
                         <p>"The AI navigation system we built for ARKAJA 2.0 achieves real-time obstacle avoidance at depth."</p>
-                        <h4>Team Lead, Software</h4>
+                        <h4>OD MADHAV PRAKASH, Team Vice Captain</h4>
                     </div>
                     <div class="testimonial-avatar">
                         <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=80&q=80" alt="Samantha">
@@ -212,8 +250,8 @@
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-content">
-                        <p>"Competing at RoboSub pushed us to innovate in ways we never imagined possible."</p>
-                        <h4>Team Captain, DTU AUV</h4>
+                        <p>"You win some, and you lose some, but you always learn a lot."</p>
+                        <h4>VIGHNESH R PAI, Team Manager</h4>
                     </div>
                     <div class="testimonial-avatar">
                         <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80" alt="Mark">
@@ -233,13 +271,8 @@
             <div class="dive-left anim-fade-up">
                 <h2 class="dive-title">DIVE INTO THE<br>DEEP</h2>
             </div>
-            <div class="dive-center anim-fade-up delay-1">
-                <button class="play-btn">
-                    <i class="fas fa-play"></i>
-                </button>
-            </div>
             <div class="dive-right anim-fade-up delay-2">
-                <p>DTU AUV invites you to explore the groundbreaking world of autonomous underwater vehicles. Discover how AI, robotics, and engineering converge beneath the surface to push the boundaries of marine technology.</p>
+                <p>DTU AUV welcomes you to the forefront of subsea innovation. Witness how advanced software, custom embedded intelligence, and rugged mechanical design converge to conquer extreme underwater challenges and redefine marine robotics. </p>
             </div>
         </div>
     </section>
@@ -262,7 +295,20 @@
                     <h4>Email</h4>
                     <p>auv@dtu.ac.in</p>
                     <h4 class="mt">Address</h4>
-                    <p>Delhi Technological University<br>Shahbad Daulatpur, Delhi-42</p>
+                    <p>
+                        Delhi Technological University<br>
+                        Shahbad Daulatpur Village, Rohini<br>
+                        New Delhi, Delhi – 110042<br>
+                        <small>Near Sports Complex &amp; Wind Tunnel Workshop</small>
+                    </p>
+
+                    <a href="https://maps.app.goo.gl/XYC6aTk5toWEnVDE7"
+                        class="address-map-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="View DTU AUV location on Google Maps">
+                         <i class="fas fa-location-dot"></i>
+                    </a>
                 </div>
                 <div class="footer-col">
                     <h4>Affiliated With</h4>
@@ -271,16 +317,16 @@
                 <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="team.html">Team</a></li>
+                        <li><a href="work.html">Work</a></li>
                     </ul>
                 </div>
                 <div class="footer-col">
                     <h4>Explore</h4>
                     <ul>
-                        <li><a href="#">LAPRAS 2.0</a></li>
+                        <li><a href="varuna.html">VARUNA 4.0</a></li>
                         <li><a href="#">ARKAJA 2.0</a></li>
                         <li><a href="#">RoboSub</a></li>
                         <li><a href="#">SAUVC</a></li>
@@ -288,13 +334,20 @@
                     </ul>
                 </div>
                 <div class="footer-col footer-end">
-                    <h4>MARINE ROBOTICS &<br>AUV TECHNOLOGY</h4>
-                    <p>Dive into a world where AI, robotics, and engineering converge beneath the ocean surface to advance marine technology.</p>
+                    <h4>MARINE ROBOTICS &<br>AUTONOMOUS TECHNOLOGY</h4>
+                    <p>Join us on our mission to push the limits of subsea intelligence, where raw code meets high-pressure engineering to conquer the deep frontier.</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-dribbble"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/dtu_auv?igsh=M3J2MDdiMGo4aXRu" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+
+                        <a href="https://www.linkedin.com/company/autonomous-underwater-vehicle---delhi-technological-university-dtu-auv-/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+
+                        <a href="https://github.com/dtu-auv" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-github"></i>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -311,5 +364,6 @@
     </footer>
 
     <script src="js/script.js"></script>
+    <script src="js/services-carousel.js"></script>
 </body>
 </html>

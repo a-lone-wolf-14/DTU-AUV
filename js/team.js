@@ -5,152 +5,35 @@
    ============================================================ */
 
 // ── Member Data ──────────────────────────────────────────────
-const members = {
-  'zack-hill': {
-    name:        'Zack Hill',
-    role:        'Team Lead & Project Director',
-    subsystem:   'Leadership',
-    email:       'zack@few.io',
-    photo:       'assets/images/team/1.jpg',
-    bio:         'Leads the overall strategy and execution of DTU AUV. Coordinates cross-functional teams and represents the club at international competitions including RoboSub and SAUVC.',
-    skills:      ['Leadership', 'Project Management', 'Systems Engineering', 'RoboSub', 'SAUVC'],
-    expertise:   92,
-    contributions: 148,
-    yearsActive: 3,
-    social: { linkedin: '#', github: '#', twitter: '#' },
-    bars: [
-      { label: 'Strategy',    pct: 95 },
-      { label: 'Engineering', pct: 78 },
-      { label: 'Teamwork',    pct: 98 },
+// Pulled live from TEAM_MEMBERS (js/team-data.js) — that file is
+// now the ONLY place you edit to add/update team members. Any
+// optional fields (bio, skills, subsystem, etc.) you don't set
+// there just fall back to sensible defaults below, so a member
+// with just name/role/email/image still works fine in the popup.
+function getMemberData(slug) {
+  if (typeof TEAM_MEMBERS === 'undefined') return null;
+  const base = TEAM_MEMBERS.find(m => m.id === slug);
+  if (!base) return null;
+
+  return {
+    name: base.name,
+    role: base.role,
+    subsystem: base.subsystem || 'General',
+    email: base.email,
+    photo: base.image,
+    bio: base.bio || `${base.name} contributes to DTU AUV as ${base.role}.`,
+    skills: (base.skills && base.skills.length) ? base.skills : [base.role],
+    expertise: typeof base.expertise === 'number' ? base.expertise : 85,
+    contributions: typeof base.contributions === 'number' ? base.contributions : 100,
+    yearsActive: typeof base.yearsActive === 'number' ? base.yearsActive : 1,
+    social: base.social || {},
+    bars: (base.bars && base.bars.length) ? base.bars : [
+      { label: 'Skill',     pct: 85 },
+      { label: 'Teamwork',  pct: 90 },
+      { label: 'Growth',    pct: 80 },
     ],
-  },
-  'arlton-lowry': {
-    name:        'Arlton Lowry',
-    role:        'Chief Communications Officer',
-    subsystem:   'Communications',
-    email:       'arlton@few.io',
-    photo:       'assets/images/team/4.jpg',
-    bio:         'Manages all external communications, sponsorships and outreach. Builds relationships with industry partners and promotes DTU AUV\'s research and competition achievements globally.',
-    skills:      ['Outreach', 'Sponsorship', 'Content Strategy', 'Public Relations'],
-    expertise:   85,
-    contributions: 112,
-    yearsActive: 2,
-    social: { linkedin: '#', github: '#', twitter: '#' },
-    bars: [
-      { label: 'Communication', pct: 96 },
-      { label: 'Marketing',     pct: 88 },
-      { label: 'Writing',       pct: 82 },
-    ],
-  },
-  'sarah-devine': {
-    name:        'Sarah Devine',
-    role:        'Director of Projects',
-    subsystem:   'Mechanical',
-    email:       'sarah@few.io',
-    photo:       'assets/images/team/5a.jpg',
-    bio:         'Oversees mechanical design and manufacturing of AUV hull, thrusters and pressure vessels. Expert in SolidWorks, CFD simulations and composite fabrication techniques.',
-    skills:      ['SolidWorks', 'CFD', 'FEA', 'Composites', 'Waterproofing'],
-    expertise:   90,
-    contributions: 136,
-    yearsActive: 3,
-    social: { linkedin: '#', github: '#', twitter: '#' },
-    bars: [
-      { label: 'CAD Design', pct: 94 },
-      { label: 'CFD/FEA',    pct: 87 },
-      { label: 'Fabrication', pct: 82 },
-    ],
-  },
-  'will-carter': {
-    name:        'Will Carter',
-    role:        'Director of Accounts',
-    subsystem:   'Electronics',
-    email:       'will@few.io',
-    photo:       'assets/images/team/5.jpeg',
-    bio:         'Designs and implements the electronics architecture including power distribution, sensor integration and custom PCBs for the AUV\'s control systems and communication modules.',
-    skills:      ['PCB Design', 'KiCad', 'Embedded C', 'Power Systems', 'ROS'],
-    expertise:   88,
-    contributions: 124,
-    yearsActive: 2,
-    social: { linkedin: '#', github: '#', twitter: '#' },
-    bars: [
-      { label: 'PCB Design',  pct: 91 },
-      { label: 'Embedded',    pct: 86 },
-      { label: 'Power Mgmt',  pct: 88 },
-    ],
-  },
-  'brent-fulford': {
-    name:        'Brent Fulford',
-    role:        'Software & Controls Lead',
-    subsystem:   'Software',
-    email:       'brent@few.io',
-    photo:       'assets/images/team/7.jpeg',
-    bio:         'Develops the autonomy stack, computer vision pipelines and mission planning algorithms that allow the AUV to navigate and complete tasks in dynamic underwater environments.',
-    skills:      ['Python', 'ROS2', 'OpenCV', 'Machine Learning', 'SLAM'],
-    expertise:   93,
-    contributions: 201,
-    yearsActive: 3,
-    social: { linkedin: '#', github: '#', twitter: '#' },
-    bars: [
-      { label: 'ROS2/Python', pct: 95 },
-      { label: 'Computer Vision', pct: 90 },
-      { label: 'Controls',    pct: 88 },
-    ],
-  },
-  'correne-spero': {
-    name:        'Correne Spero',
-    role:        'Finance & Administration',
-    subsystem:   'Operations',
-    email:       'spero@few.io',
-    photo:       'assets/images/team/8.jpeg',
-    bio:         'Manages the club\'s budget, procurement and administrative operations. Handles competition registrations, travel logistics and ensures all documentation meets compliance requirements.',
-    skills:      ['Budgeting', 'Procurement', 'Logistics', 'Documentation'],
-    expertise:   83,
-    contributions: 98,
-    yearsActive: 2,
-    social: { linkedin: '#', github: '#', twitter: '#' },
-    bars: [
-      { label: 'Finance',     pct: 90 },
-      { label: 'Logistics',   pct: 85 },
-      { label: 'Compliance',  pct: 88 },
-    ],
-  },
-  'calvin-bramlett': {
-    name:        'Calvin Bramlett',
-    role:        'Senior Hardware Designer',
-    subsystem:   'Mechanical',
-    email:       'calvin@few.io',
-    photo:       'assets/images/team/9.jpeg',
-    bio:         'Specialises in precision machining and prototype fabrication. Designs thruster mounts, camera housings and the main frame structure, ensuring every component meets underwater pressure tolerances.',
-    skills:      ['CNC Machining', 'SolidWorks', '3D Printing', 'Waterjet', 'Assembly'],
-    expertise:   86,
-    contributions: 119,
-    yearsActive: 2,
-    social: { linkedin: '#', github: '#', twitter: '#' },
-    bars: [
-      { label: 'Machining',   pct: 90 },
-      { label: '3D Printing', pct: 85 },
-      { label: 'CAD Design',  pct: 88 },
-    ],
-  },
-  'john-cater': {
-    name:        'John Cater',
-    role:        'Senior UI / UX Designer',
-    subsystem:   'Interface',
-    email:       'john@few.io',
-    photo:       'assets/images/team/10.jpeg',
-    bio:         'Creates the visual identity and user interfaces for DTU AUV — from the operator dashboards and mission control UI to the public-facing website and competition presentation materials.',
-    skills:      ['Figma', 'CSS / HTML', 'Motion Design', 'Branding', 'React'],
-    expertise:   91,
-    contributions: 105,
-    yearsActive: 2,
-    social: { linkedin: '#', github: '#', twitter: '#' },
-    bars: [
-      { label: 'UI Design',   pct: 94 },
-      { label: 'Motion',      pct: 88 },
-      { label: 'Branding',    pct: 90 },
-    ],
-  },
-};
+  };
+}
 
 // ── Subsystem → decorative character mapping ─────────────────
 const subsystemChar = {
@@ -284,7 +167,7 @@ function buildOverlay() {
 
 // ── Populate & open ──────────────────────────────────────────
 function openMember(slug) {
-  const data = members[slug];
+  const data = getMemberData(slug);
   if (!data) return;
 
   const overlay = document.getElementById('member-overlay');
