@@ -154,7 +154,7 @@ const TEAM_MEMBERS = [
   {
     id: "swaagat-singh",
     name: "Swaagat Singh",
-    role: "Their Role",
+    role: "Embedded Executive",
     email: "email@few.io",
     image: "assets/images/Team Members/Embedded & Acoustics/Swaagat.jpg"
   },
@@ -173,8 +173,8 @@ const TEAM_MEMBERS = [
     image: "assets/images/Team Members/Mechanical/Arpan.jpg"
   },
   {
-    id: "kaustubh-verma",
-    name: "Kaustubh Verma",
+    id: "kaustubh-arya",
+    name: "Kaustubh Arya",
     role: "Mechanical Executive",
     email: "email@few.io",
     image: "assets/images/Team Members/Mechanical/Kaustubh.jpg"
