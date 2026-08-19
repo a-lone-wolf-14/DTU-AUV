@@ -103,8 +103,8 @@ const TEAM_MEMBERS = [
     image: "assets/images/Team Members/Design & Media/Suraj.jpg"
   },
   {
-    id: "raghav-singh-gossain",
-    name: "Raghav Singh Gossain",
+    id: "raghav-singh-gosain",
+    name: "Raghav Singh Gosain",
     role: "Research & Development Lead",
     email: "email@few.io",
     image: "assets/images/Team Members/Embedded & Acoustics/Raghav.jpg"
