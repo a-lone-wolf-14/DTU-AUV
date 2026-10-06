@@ -1267,9 +1267,277 @@ body.work-page .search-btn:hover { color: rgba(255,255,255,0.85); }
 
 
 /* ============================================================
+   SEWA - ROVC CHALLENGE 2026 (Better Arena Design - User Mockup)
+   ============================================================ */
+.sewa-section {
+    position: relative;
+    background: #ffffff;
+    border-top: 1px solid #eef2f6;
+    border-bottom: 1px solid #eef2f6;
+    padding: 80px 0;
+    scroll-margin-top: 90px;
+}
+
+/* Single cohesive minimal card with generous whitespace */
+.sewa-stage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.22fr;
+    gap: 44px;
+    align-items: center;
+    background: #fafbfc;
+    border: 1px solid #e2e8f0;
+    border-radius: 24px;
+    padding: 40px 44px;
+    position: relative;
+    box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.03);
+}
+
+/* Left Visual & Typographic Prizes */
+.sewa-stage-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+}
+
+.sewa-visual-wrap {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 0;
+}
+
+.sewa-art-img {
+    width: 100%;
+    max-width: 360px;
+    height: auto;
+    max-height: 280px;
+    object-fit: contain;
+    filter: drop-shadow(0 10px 24px rgba(15, 23, 42, 0.07));
+    display: block;
+}
+
+/* Clean Prize Strip - zero card boxes, pure typography */
+.sewa-prizes-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 370px;
+    padding: 12px 18px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+}
+
+.prize-stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.prize-trophy {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    color: #64748b;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 2px;
+}
+
+.prize-stat:nth-child(1) .prize-trophy i { color: #d97706; }
+.prize-stat:nth-child(3) .prize-trophy i { color: #64748b; }
+.prize-stat:nth-child(5) .prize-trophy i { color: #b45309; }
+
+.prize-num {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+}
+
+.prize-sep {
+    width: 1px;
+    height: 28px;
+    background: #e2e8f0;
+}
+
+/* Right: Content & Missions (Clean Minimalist Typography) */
+.sewa-stage-info {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.sewa-info-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sewa-venue-eyebrow {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #ea580c;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.sewa-arena-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 2.15rem;
+    font-weight: 800;
+    color: #0f172a;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+    margin: 0;
+}
+
+.sewa-info-lead {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: #64748b;
+    margin: 0;
+}
+
+/* Clean Borderless Missions List */
+.sewa-missions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 4px 0;
+}
+
+.mission-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.mission-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #eff6ff;
+    color: #0284c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.mission-body h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 2px 0;
+}
+
+.mission-body p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
+    color: #64748b;
+    line-height: 1.45;
+    margin: 0;
+}
+
+/* Clean Minimal Metadata Line */
+.sewa-meta-line {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    color: #475569;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-top: 2px;
+}
+
+.meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.meta-item strong {
+    color: #ea580c;
+    font-weight: 700;
+}
+
+.meta-dot {
+    color: #cbd5e1;
+    font-weight: bold;
+}
+
+/* Action Buttons */
+.sewa-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-top: 4px;
+    flex-wrap: wrap;
+}
+
+.btn-sewa-reg {
+    background: #ff5533;
+    color: #ffffff !important;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.92rem;
+    font-weight: 700;
+    padding: 12px 22px;
+    border-radius: 11px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 14px rgba(255, 85, 51, 0.22);
+    transition: all 0.2s ease;
+}
+
+.btn-sewa-reg:hover {
+    background: #ea4524;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(255, 85, 51, 0.32);
+}
+
+.btn-sewa-prob {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #0284c7 !important;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s ease;
+}
+
+.btn-sewa-prob:hover {
+    color: #0369a1 !important;
+    text-decoration: underline;
+}
+
+
+/* ============================================================
    WORK SECTIONS RESPONSIVE
    ============================================================ */
-@media (max-width: 900px) {
+@media (max-width: 960px) {
     .philosophy-grid {
         grid-template-columns: 1fr;
     }
@@ -1277,15 +1545,39 @@ body.work-page .search-btn:hover { color: rgba(255,255,255,0.85); }
     .tech-grid {
         grid-template-columns: 1fr 1fr;
     }
+
+    .sewa-stage-grid {
+        grid-template-columns: 1fr;
+        padding: 32px 24px;
+        gap: 32px;
+    }
+
+    .sewa-stage-visual {
+        gap: 20px;
+    }
+
+    .sewa-actions-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .btn-sewa-reg {
+        justify-content: center;
+    }
+
+    .btn-sewa-prob {
+        justify-content: center;
+    }
 }
 
 @media (max-width: 600px) {
     .work-section {
-        padding: 80px 0;
+        padding: 70px 0;
     }
 
     .work-container {
-        padding: 0 24px;
+        padding: 0 20px;
     }
 
     .philosophy-grid,
@@ -1299,5 +1591,40 @@ body.work-page .search-btn:hover { color: rgba(255,255,255,0.85); }
 
     .tech-card {
         padding: 24px 22px;
+    }
+
+    .sewa-section {
+        padding: 60px 0;
+    }
+
+    .sewa-stage-grid {
+        padding: 24px 18px;
+        gap: 24px;
+        border-radius: 18px;
+    }
+
+    .sewa-arena-title {
+        font-size: 1.6rem;
+    }
+
+    .sewa-info-lead {
+        font-size: 0.85rem;
+    }
+
+    .sewa-prizes-strip {
+        padding: 10px 14px;
+    }
+
+    .prize-num {
+        font-size: 1rem;
+    }
+
+    .prize-trophy {
+        font-size: 0.62rem;
+    }
+
+    .sewa-meta-line {
+        font-size: 0.78rem;
+        gap: 6px;
     }
 }

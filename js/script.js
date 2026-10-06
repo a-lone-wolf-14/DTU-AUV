@@ -89,11 +89,22 @@ function revealOnScroll() {
             }
         });
     }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+        threshold: 0.05,
+        rootMargin: '0px 0px 50px 0px'
     });
 
     elements.forEach(el => observer.observe(el));
+
+    // Handle deep links or anchors on page load
+    if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+            target.querySelectorAll('.anim-fade-up, .anim-fade-left, .anim-fade-right').forEach(el => {
+                el.classList.add('visible');
+            });
+            target.classList.add('visible');
+        }
+    }
 }
 
 revealOnScroll();

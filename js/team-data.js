@@ -93,7 +93,7 @@ const TEAM_MEMBERS = [
     name: "Afroz Hadil",
     role: "Design & Media Lead",
     email: "email@few.io",
-    image: "assets/images/Team Members/Design & Media/Afroz.jpg"
+    image: "assets/images/Team Members/Design & Media/afroz.jpeg?v=20261006"
   },
   {
     id: "suraj-jaiswal",

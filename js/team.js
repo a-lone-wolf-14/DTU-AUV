@@ -92,7 +92,6 @@ function buildOverlay() {
         <div class="mp-card mp-card--messages" id="mp-card-messages">
           <div class="mp-card__header">
             <span class="mp-card__title">Contributions</span>
-            <span class="mp-card__badge" id="mp-contrib-badge">–</span>
           </div>
           <div class="mp-card__thumb-wrap">
             <img class="mp-card__thumb" id="mp-thumb-msg" src="" alt="">
@@ -119,7 +118,6 @@ function buildOverlay() {
             <img class="mp-card__avatar" id="mp-avatar-know" src="" alt="">
             <div class="mp-card__user-info">
               <div class="mp-card__user-name" id="mp-name-know">–</div>
-              <div class="mp-card__user-pct" id="mp-pct-know">–%</div>
             </div>
           </div>
         </div>
@@ -135,7 +133,6 @@ function buildOverlay() {
             <img class="mp-card__avatar" id="mp-avatar-eff" src="" alt="">
             <div class="mp-card__user-info">
               <div class="mp-card__user-name" id="mp-name-eff">–</div>
-              <div class="mp-card__user-pct" id="mp-pct-eff">–%</div>
             </div>
           </div>
         </div>
@@ -186,7 +183,6 @@ function openMember(slug) {
   }
 
   // ── Contributions card ──
-  document.getElementById('mp-contrib-badge').textContent = data.contributions;
   const thumbMsg = document.getElementById('mp-thumb-msg');
   thumbMsg.src = data.photo || '';
   thumbMsg.alt = data.name;
@@ -195,15 +191,12 @@ function openMember(slug) {
   const charEl = document.getElementById('mp-big-char');
   charEl.textContent = subsystemChar[data.subsystem] || data.name.charAt(0);
   document.getElementById('mp-name-know').textContent = data.name;
-  document.getElementById('mp-pct-know').textContent  = data.expertise + '%';
   const avatarKnow = document.getElementById('mp-avatar-know');
   avatarKnow.src = data.photo || '';
   avatarKnow.alt = data.name;
 
   // ── Efficiency card ──
-  const avgPct = Math.round(data.bars.reduce((s, b) => s + b.pct, 0) / data.bars.length);
   document.getElementById('mp-name-eff').textContent = data.name;
-  document.getElementById('mp-pct-eff').textContent  = avgPct + '%';
   const avatarEff = document.getElementById('mp-avatar-eff');
   avatarEff.src = data.photo || '';
   avatarEff.alt = data.name;
@@ -299,6 +292,11 @@ function initTeam() {
   document.querySelectorAll('.team-card[data-member]').forEach(card => {
     card.addEventListener('click', () => openMember(card.dataset.member));
   });
+
+  const hash = window.location.hash.replace('#', '');
+  if (hash && getMemberData(hash)) {
+    openMember(hash);
+  }
 }
 
 if (document.readyState === 'loading') {

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DTU AUV - Autonomous Underwater Vehicle</title>
     <link rel="icon" type="image/png" href="assets/images/logo-auv-favicon.png">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css?v=20261006i">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -85,14 +85,46 @@
         </div>
     </section>
 
+    <!-- ========== SEWA SPOTLIGHT BANNER (On the Border) ========== -->
+    <div class="sewa-spotlight-wrapper">
+        <div class="sewa-spotlight-banner" id="sewa-spotlight-banner">
+            <div class="sewa-spotlight-inner">
+                <div class="sewa-spotlight-left">
+                    <div class="sewa-spotlight-logo-wrap" style="flex-shrink: 0; display: flex; align-items: center; justify-content: center; height: 48px; max-height: 48px;">
+                        <img src="assets/images/seva-first-innovation-logo.svg" alt="SEVA First Innovation Challenge Logo" class="sewa-spotlight-logo" height="44" style="height: 44px !important; max-height: 44px !important; width: auto !important; max-width: 120px !important; object-fit: contain !important; display: block !important;">
+                    </div>
+                    <div class="sewa-spotlight-content">
+                        <div class="sewa-spotlight-title-row">
+                            <h3 class="sewa-spotlight-title">The Deep-Water Robotics Arena</h3>
+                            <span class="sewa-spotlight-badge">
+                                <span class="pulse-dot"></span>
+                                <span>ROVC 2026</span>
+                            </span>
+                        </div>
+                        <p class="sewa-spotlight-msg">DTU's flagship underwater robotics competition is live with ₹5.0 Lakh in prizes.</p>
+                    </div>
+                </div>
+                <div class="sewa-spotlight-actions">
+                    <button class="sewa-spotlight-details" id="open-sewa-popup-btn" type="button">
+                        Challenge Brief
+                    </button>
+                    <a href="work.html#sewa-rovc" class="sewa-spotlight-btn">
+                        <span>View More</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ========== LOGO STRIP ========== -->
     <section class="logo-strip">
         <div class="logo-strip-inner">
-            <div class="logo-item anim-fade-up"><i class="fas fa-microchip"></i> <span>RoboSub</span></div>
-            <div class="logo-item anim-fade-up delay-1"><i class="fas fa-anchor"></i> <span>SAUVC</span></div>
-            <div class="logo-item anim-fade-up delay-1"><i class="fas fa-water"></i> <span>LAPRAS 2.0</span></div>
-            <div class="logo-item anim-fade-up delay-2"><i class="fas fa-ship"></i> <span>ARKAJA 2.0</span></div>
-            <div class="logo-item anim-fade-up delay-2"><i class="fas fa-cogs"></i> <span>DTU AUV</span></div>
+            <div class="logo-item"><i class="fas fa-microchip"></i> <span>RoboSub</span></div>
+            <div class="logo-item"><i class="fas fa-anchor"></i> <span>SAUVC</span></div>
+            <div class="logo-item"><i class="fas fa-water"></i> <span>LAPRAS 2.0</span></div>
+            <div class="logo-item"><i class="fas fa-ship"></i> <span>ARKAJA 2.0</span></div>
+            <div class="logo-item"><i class="fas fa-cogs"></i> <span>DTU AUV</span></div>
         </div>
     </section>
 
@@ -100,23 +132,26 @@
     <section class="about" id="about">
         <div class="about-container">
             <div class="about-image anim-fade-right">
-                <img src="assets\images\fish around bot.png">
+                <img src="assets/images/fish around bot.png" alt="DTU AUV Subsea Autonomous Vehicle in Marine Environment" class="about-img">
             </div>
             <div class="about-content anim-fade-left">
                 <span class="section-label">A B O U T &nbsp; U S</span>
                 <h2 class="section-title">THE PRECISION STRIKE<br>SUBSEA INTERVENTION<br>THE IRON TETHER</h2>
-                <div class="about-tags">
-                    <span class="tag">Autonomy</span>
-                    <span class="tag">Robotics</span>
-                    <span class="tag">AI</span>
+
+                <div class="about-text-blocks">
+                    <div class="about-block">
+                        <p><strong class="tech-term">An AUV</strong> is an untethered, fully intelligent robotic submarine engineered to operate independently in dynamic marine environments. Acting as its own captain, it relies on an onboard computational stack and an integrated sensor suite to map its surroundings, adapt to changing underwater conditions, and execute precise mission objectives—such as pipeline tracking or target localization—without a single line of communication to the surface.</p>
+                    </div>
+
+                    <div class="about-block">
+                        <p><strong class="tech-term">An ROV</strong> is a highly maneuverable, tethered robotic submarine designed for deep-subsea intervention where human presence is impossible but human oversight is critical. Connected to pilots on the surface via an umbilical cable that streams high-bandwidth video and telemetry, it combines real-time human intuition with stabilized thruster control and robotic manipulators to perform delicate, complex tasks like underwater inspection, maintenance, and heavy tool operation.</p>
+                    </div>
+
+                    <div class="about-block">
+                        <p><strong class="tech-term">An ASV</strong> is an intelligent surface craft optimized for long-endurance marine deployment and boundary-layer exploration. Operating at the intersection of air and water, it utilizes GPS, radar, and real-time environmental sensors to plot optimal paths, avoid obstacles, and survive rough sea states, serving as a vital communication relay, data aggregator, or aerial drone launchpad for underwater operations.</p>
+                    </div>
                 </div>
-                <ul class="about-text">
-                    <li>An AUV is an untethered, fully intelligent robotic submarine engineered to operate independently in dynamic marine environments. Acting as its own captain, it relies on an onboard computational stack and an integrated sensor suite to map its surroundings, adapt to changing underwater conditions, and execute precise mission objectives—such as pipeline tracking or target localization—without a single line of communication to the surface.</li>
 
-                    <li>An ROV is a highly maneuverable, tethered robotic submarine designed for deep-subsea intervention where human presence is impossible but human oversight is critical. Connected to pilots on the surface via an umbilical cable that streams high-bandwidth video and telemetry, it combines real-time human intuition with stabilized thruster control and robotic manipulators to perform delicate, complex tasks like underwater inspection, maintenance, and heavy tool operation.</li>
-
-                    <li>An ASV is an intelligent surface craft optimized for long-endurance marine deployment and boundary-layer exploration. Operating at the intersection of air and water, it utilizes GPS, radar, and real-time environmental sensors to plot optimal paths, avoid obstacles, and survive rough sea states, serving as a vital communication relay, data aggregator, or aerial drone launchpad for underwater operations.</li>
-                </ul>
                 <div class="about-actions">
                     <a href="about.html" class="btn-primary">Learn More</a>
                 </div>
@@ -127,8 +162,10 @@
     <!-- ========== SERVICES SECTION ========== -->
     <section class="services" id="services">
         <div class="services-container">
-            <div class="services-header">
-                <h2 class="section-title-dark anim-fade-up">OUR WORK</h2>
+            <div class="services-header anim-fade-up">
+                <span class="services-eyebrow">ENGINEERING DIVISIONS</span>
+                <h2 class="section-title-dark">OUR WORK</h2>
+                <p class="services-subtitle">Multidisciplinary teams collaborating to push the frontiers of autonomous underwater robotics.</p>
             </div>
 
             <div class="services-stage" id="services-stage">
@@ -137,54 +174,73 @@
                 </button>
 
                 <div class="services-track" id="services-track">
-                    <div class="service-card" data-index="0">
-                        <div class="service-icon">
-                            <i class="fas fa-brain"></i>
-                        </div>
-                        <div class="service-card-body">
-                            <h3>Software Department</h3>
-                            <p>The cognitive core of our vehicles. We build integrated frameworks for Perception (computer vision object tracking), Autonomy (real-time path planning), and Control Systems that allow our bots to navigate the depths completely on their own.</p>
-                            <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="service-card" data-index="1">
-                        <div class="service-icon">
-                            <i class="fas fa-microchip"></i>
-                        </div>
-                        <div class="service-card-body">
-                            <h3>Embedded Department</h3>
-                            <p>The vital bridge between data and action. We design custom PCBs and hardware interfaces utilizing IMUs and pressure sensors for precise depth tracking, backed by smart power circuits for safe battery regulation.</p>
-                            <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
-                        </div>
-                    </div>
-                    <div class="service-card" data-index="2">
-                        <div class="service-icon">
-                            <i class="fas fa-drafting-compass"></i>
+                    <div class="service-card" data-index="2" data-dept="mechanical">
+                        <div class="service-card-top">
+                            <div class="service-icon">
+                                <i class="fas fa-drafting-compass"></i>
+                            </div>
+                            <span class="service-dept-tag">01 · HARDWARE</span>
                         </div>
                         <div class="service-card-body">
                             <h3>Mechanical Department</h3>
                             <p>Built to defy immense underwater pressures. We design hydrodynamic hull structures, optimized multi-axis thruster layouts, and custom manipulation tools to turn complex CAD concepts into rugged, ocean-ready robots.</p>
-                            <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                            <a href="work.html" class="service-link">Explore Division <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
-                    <div class="service-card" data-index="3">
-                        <div class="service-icon">
-                            <i class="fas fa-building"></i>
+
+                    <div class="service-card" data-index="1" data-dept="embedded">
+                        <div class="service-card-top">
+                            <div class="service-icon">
+                                <i class="fas fa-microchip"></i>
+                            </div>
+                            <span class="service-dept-tag">02 · ELECTRONICS</span>
                         </div>
                         <div class="service-card-body">
-                            <h3>Corporate Department</h3>
-                            <p>Driving the team's external partnerships and growth. We manage industry collaborations, sponsorships, outreach, and strategic relationships that connect DTU AUV with organizations shaping the future of marine technology.</p>
-                            <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                            <h3>Embedded Department</h3>
+                            <p>The vital bridge between data and action. We design custom PCBs and hardware interfaces utilizing IMUs and pressure sensors for precise depth tracking, backed by smart power circuits for safe battery regulation.</p>
+                            <a href="work.html" class="service-link">Explore Division <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
-                    <div class="service-card" data-index="4">
-                        <div class="service-icon">
-                            <i class="fas fa-flask"></i>
+
+                    <div class="service-card" data-index="0" data-dept="software">
+                        <div class="service-card-top">
+                            <div class="service-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <span class="service-dept-tag">03 · AUTONOMY</span>
+                        </div>
+                        <div class="service-card-body">
+                            <h3>Software Department</h3>
+                            <p>The cognitive core of our vehicles. We build integrated frameworks for Perception (computer vision object tracking), Autonomy (real-time path planning), and Control Systems that allow our bots to navigate the depths completely on their own.</p>
+                            <a href="work.html" class="service-link">Explore Division <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="service-card" data-index="4" data-dept="rnd">
+                        <div class="service-card-top">
+                            <div class="service-icon">
+                                <i class="fas fa-flask"></i>
+                            </div>
+                            <span class="service-dept-tag">04 · RESEARCH</span>
                         </div>
                         <div class="service-card-body">
                             <h3>R&amp;D Department</h3>
                             <p>Exploring the technologies that push autonomous marine systems forward. We research, prototype, and validate new approaches in robotics, sensing, navigation, and intelligent underwater systems for the next generation of our vehicles.</p>
-                            <a href="#" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                            <a href="work.html" class="service-link">Explore Division <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="service-card" data-index="3" data-dept="corporate">
+                        <div class="service-card-top">
+                            <div class="service-icon">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <span class="service-dept-tag">05 · OUTREACH</span>
+                        </div>
+                        <div class="service-card-body">
+                            <h3>Corporate Department</h3>
+                            <p>Driving the team's external partnerships and growth. We manage industry collaborations, sponsorships, outreach, and strategic relationships that connect DTU AUV with organizations shaping the future of marine technology.</p>
+                            <a href="work.html" class="service-link">Explore Division <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -363,7 +419,39 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
-    <script src="js/services-carousel.js"></script>
+    <!-- ========== PROMOTIONAL POPUP MODAL (SEWA - ROVC 2026) ========== -->
+    <div class="promo-modal" id="sewa-promo-modal" role="dialog" aria-modal="true" aria-labelledby="promo-title">
+        <div class="promo-backdrop" id="promo-backdrop"></div>
+        <div class="sewa-card">
+            <button class="sewa-close" id="promo-close" aria-label="Close popup">
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M1 1L11 11M1 11L11 1" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+                </svg>
+            </button>
+            <div class="sewa-visual">
+                <img src="assets/images/rov.png" alt="SEWA - ROVC Challenge 2026" class="sewa-img">
+            </div>
+            <div class="sewa-body">
+                <span class="sewa-eyebrow">RYIC 2026 · DTU</span>
+                <h2 class="sewa-title" id="promo-title">SEWA - ROVC Challenge 2026</h2>
+                <p class="sewa-summary">Design and pilot a Remotely Operated Vehicle in Delhi Technological University's flagship underwater robotics competition.</p>
+                <div class="sewa-prizes">
+                    <div class="prize-entry"><span class="prize-num">₹2.5 Lakh</span><span class="prize-lbl">1st Prize</span></div>
+                    <div class="prize-sep"></div>
+                    <div class="prize-entry"><span class="prize-num">₹1.5 Lakh</span><span class="prize-lbl">2nd Prize</span></div>
+                    <div class="prize-sep"></div>
+                    <div class="prize-entry"><span class="prize-num">₹1.0 Lakh</span><span class="prize-lbl">3rd Prize</span></div>
+                </div>
+                <p class="sewa-deadline-note">Registration closes on <strong>10th September</strong>.<span class="deadline-extra"> Open to school, college &amp; industry teams.</span></p>
+                <a href="https://sewafirstryic.dtu.ac.in/signin" target="_blank" rel="noopener noreferrer" class="sewa-btn">Register for Challenge</a>
+                <a href="https://sewafirstryic.dtu.ac.in/problem-statements" target="_blank" rel="noopener noreferrer" class="sewa-secondary-link">Problem Statements &amp; Guidelines &rarr;</a>
+                <button class="sewa-dismiss" id="promo-dismiss">No, thanks</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js?v=20261004c"></script>
+    <script src="js/services-carousel.js?v=20261004c"></script>
+    <script src="js/promo-popup.js?v=20261006a"></script>
 </body>
 </html>
