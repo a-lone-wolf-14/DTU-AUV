@@ -523,43 +523,20 @@ img {
 .sewa-spotlight-inner {
     position: relative;
     background: #ffffff;
-    border: 1.5px solid rgba(56, 189, 248, 0.5);
+    border: 1px solid rgba(26, 35, 65, 0.08);
     border-radius: 20px;
-    padding: 24px 34px;
+    padding: 22px 28px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 24px;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-    animation: sewaBoxPulseGlow 2.6s ease-in-out infinite;
-}
-
-@keyframes sewaBoxPulseGlow {
-    0%, 100% {
-        box-shadow: 0 16px 36px -8px rgba(10, 14, 26, 0.25),
-                    0 10px 26px 0px rgba(2, 132, 199, 0.45),
-                    0 0 22px 2px rgba(14, 165, 233, 0.35);
-        border-color: rgba(56, 189, 248, 0.5);
-    }
-    50% {
-        box-shadow: 0 20px 48px -6px rgba(10, 14, 26, 0.3),
-                    0 18px 48px 4px rgba(2, 132, 199, 0.85),
-                    0 0 42px 8px rgba(56, 189, 248, 0.7);
-        border-color: #0284c7;
-    }
-}
-
-.sewa-spotlight-inner:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 22px 52px -6px rgba(10, 14, 26, 0.32),
-                0 20px 52px 6px rgba(2, 132, 199, 0.9),
-                0 0 46px 10px rgba(56, 189, 248, 0.75);
+    box-shadow: 0 24px 60px -20px rgba(10, 14, 26, 0.35);
 }
 
 .sewa-spotlight-left {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 24px;
     flex: 1;
     min-width: 0;
 }
@@ -568,8 +545,8 @@ img {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-right: 22px;
-    border-right: 1px solid #e2e8f0;
+    padding-right: 24px;
+    border-right: 1px solid rgba(26, 35, 65, 0.1);
     flex-shrink: 0;
     height: 48px;
     max-height: 48px;
@@ -582,135 +559,123 @@ img {
     max-width: 130px !important;
     object-fit: contain !important;
     display: block !important;
-    transition: transform 0.25s ease;
-}
-
-.sewa-spotlight-inner:hover .sewa-spotlight-logo {
-    transform: scale(1.03);
 }
 
 .sewa-spotlight-badge {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    background: transparent;
-    border: none;
-    color: #dc2626;
+    gap: 8px;
+    color: #ff6348;
     font-family: 'Inter', sans-serif;
-    font-size: 0.78rem;
+    font-size: 0.66rem;
     font-weight: 700;
-    letter-spacing: 0.5px;
-    padding: 0;
+    letter-spacing: 3px;
     text-transform: uppercase;
     flex-shrink: 0;
 }
 
 .pulse-dot {
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background: #dc2626;
+    background: #ff6348;
     display: inline-block;
-    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
-    animation: pulseDotRed 2s infinite;
+    animation: pulseDot 2.4s ease-in-out infinite;
 }
 
-@keyframes pulseDotRed {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(220, 38, 38, 0); }
-    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+@keyframes pulseDot {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255, 99, 72, 0.45); }
+    60% { box-shadow: 0 0 0 5px rgba(255, 99, 72, 0); }
 }
 
 .sewa-spotlight-content {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 6px;
     min-width: 0;
 }
 
 .sewa-spotlight-title-row {
     display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
 }
 
 .sewa-spotlight-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: #0f172a;
-    letter-spacing: -0.2px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1a2341;
     margin: 0;
     line-height: 1.25;
 }
 
-.sewa-spotlight-tag {
-    font-family: 'Inter', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: #475569;
-    background: #f1f5f9;
-    border: 1px solid #e2e8f0;
-    padding: 3px 10px;
-    border-radius: 6px;
-    letter-spacing: 0.2px;
-}
-
 .sewa-spotlight-msg {
     font-family: 'Inter', sans-serif;
-    font-size: 0.88rem;
-    color: #64748b;
+    font-size: 0.86rem;
+    color: rgba(26, 35, 65, 0.6);
     margin: 0;
-    line-height: 1.45;
+    line-height: 1.5;
+}
+
+.sewa-spotlight-msg strong {
+    color: #1a2341;
+    font-weight: 600;
 }
 
 .sewa-spotlight-actions {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 22px;
     flex-shrink: 0;
 }
 
 .sewa-spotlight-details {
-    background: transparent;
-    border: 1.5px solid #cbd5e1;
-    color: #334155;
+    background: none;
+    border: none;
+    border-bottom: 1px solid rgba(26, 35, 65, 0.25);
+    color: #1a2341;
     font-family: 'Inter', sans-serif;
     font-size: 0.86rem;
     font-weight: 600;
     cursor: pointer;
-    padding: 11px 22px;
-    border-radius: 50px;
-    transition: all 0.25s ease;
+    padding: 0 0 2px;
+    transition: color 0.25s ease, border-color 0.25s ease;
 }
 
 .sewa-spotlight-details:hover {
-    color: #0f172a;
-    border-color: #0f172a;
-    background: #f8fafc;
+    color: #ff6348;
+    border-color: #ff6348;
 }
 
 .sewa-spotlight-btn {
-    background: #0f172a;
+    background: #1a2341;
     color: #ffffff !important;
     font-family: 'Inter', sans-serif;
-    font-size: 0.88rem;
+    font-size: 0.86rem;
     font-weight: 600;
-    padding: 12px 24px;
+    padding: 13px 24px;
     border-radius: 50px;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.2);
-    transition: all 0.25s ease;
+    gap: 10px;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.sewa-spotlight-btn i {
+    font-size: 0.78rem;
+    transition: transform 0.25s ease;
 }
 
 .sewa-spotlight-btn:hover {
-    background: #0284c7;
-    transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(2, 132, 199, 0.35);
+    background: #ff6348;
+    transform: translateY(-2px);
+}
+
+.sewa-spotlight-btn:hover i {
+    transform: translateX(3px);
 }
 
 .about-container {
@@ -1512,7 +1477,7 @@ img {
     position: relative;
     min-height: 600px;
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     padding: 80px 40px;
     overflow: hidden;
 }
@@ -1543,10 +1508,14 @@ img {
     max-width: 1300px;
     margin: 0 auto;
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     gap: 60px;
-    align-items: end;
+}
+
+.dive-left {
+    max-width: 540px;
 }
 
 .dive-title {
@@ -1555,23 +1524,47 @@ img {
     font-weight: 800;
     color: var(--text-light);
     line-height: 1.1;
+    margin-bottom: 22px;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.9), 0 2px 6px rgba(0, 0, 0, 0.85);
+}
+
+.dive-desc,
+.dive-left p {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 1.8;
+    max-width: 480px;
+    margin: 0;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.95);
+}
+
+.dive-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 80px;
 }
 
 .play-btn {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.4);
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.45);
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
     color: white;
     font-size: 1.3rem;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
     transition: var(--transition);
     position: relative;
+}
+
+.play-btn i {
+    margin-left: 4px;
 }
 
 .play-btn::after {
@@ -1579,27 +1572,33 @@ img {
     position: absolute;
     inset: -8px;
     border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(56, 189, 248, 0.45);
     animation: pulse-ring 2s infinite;
 }
 
 @keyframes pulse-ring {
     0% { transform: scale(1); opacity: 1; }
-    100% { transform: scale(1.3); opacity: 0; }
+    100% { transform: scale(1.35); opacity: 0; }
 }
 
 .play-btn:hover {
-    background: rgba(255,255,255,0.25);
+    background: rgba(2, 132, 199, 0.35);
     transform: scale(1.1);
-    border-color: rgba(255,255,255,0.8);
+    border-color: rgba(56, 189, 248, 0.85);
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.5);
 }
 
-.dive-right p {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    line-height: 1.8;
-    max-width: 360px;
-    margin-left: auto;
+.play-btn.is-offline::after {
+    display: none !important;
+}
+
+.play-btn.is-offline {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* ========== FOOTER ========== */
@@ -1923,15 +1922,6 @@ img {
         padding: 16px 18px 15px;
         gap: 10px;
         border-radius: 18px;
-        box-shadow: 0 14px 34px -6px rgba(10, 14, 26, 0.22), 0 4px 10px rgba(0, 0, 0, 0.05);
-    }
-
-    .sewa-spotlight-inner::after {
-        bottom: -6px;
-        left: 8%;
-        right: 8%;
-        height: 20px;
-        filter: blur(10px);
     }
 
     .sewa-spotlight-left {
@@ -1963,39 +1953,17 @@ img {
         gap: 4px;
     }
 
-    .sewa-spotlight-title-row {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 8px;
-        flex-wrap: wrap;
-        margin-bottom: 2px;
-    }
-
     .sewa-spotlight-title {
-        font-size: 1.05rem;
-        font-weight: 800;
-        line-height: 1.25;
-        color: #0f172a;
-        margin: 0;
+        font-size: 1.1rem;
     }
 
     .sewa-spotlight-badge {
-        font-size: 0.72rem;
-        font-weight: 700;
-        gap: 5px;
-    }
-
-    .pulse-dot {
-        width: 6px;
-        height: 6px;
+        font-size: 0.62rem;
+        letter-spacing: 2px;
     }
 
     .sewa-spotlight-msg {
-        font-size: 0.78rem;
-        line-height: 1.4;
-        color: #64748b;
-        margin: 0;
+        font-size: 0.8rem;
     }
 
     .sewa-spotlight-actions {
@@ -2006,24 +1974,18 @@ img {
         margin-top: 2px;
     }
 
+    .sewa-spotlight-actions {
+        justify-content: space-between;
+        gap: 16px;
+    }
+
     .sewa-spotlight-details {
-        flex: 1;
-        text-align: center;
-        padding: 8px 12px;
         font-size: 0.8rem;
-        font-weight: 600;
-        border-radius: 999px;
-        border: 1.5px solid #cbd5e1;
     }
 
     .sewa-spotlight-btn {
-        flex: 1.15;
-        justify-content: center;
-        padding: 8px 14px;
-        font-size: 0.82rem;
-        font-weight: 600;
-        border-radius: 999px;
-        gap: 6px;
+        padding: 10px 18px;
+        font-size: 0.8rem;
     }
 
     .services {
@@ -2220,18 +2182,20 @@ img {
     }
 
     .dive-container {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        text-align: center;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 36px;
+        text-align: left;
     }
 
-    .dive-center {
-        display: flex;
-        justify-content: center;
+    .dive-left {
+        max-width: 100%;
     }
 
-    .dive-right p {
-        margin: 0 auto;
+    .dive-right {
+        align-self: center;
+        padding-right: 0;
+        padding-bottom: 10px;
     }
 
     .footer {
@@ -2360,7 +2324,7 @@ img {
 
 
 /* ============================================================
-   SEWA - ROVC 2026 PROMO POPUP MODAL (Human Editorial)
+   SEWA - ROVC 2026 PROMO POPUP MODAL
    ============================================================ */
 .promo-modal {
     position: fixed;
@@ -2379,9 +2343,9 @@ img {
 .promo-backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(10, 14, 24, 0.75);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    background: rgba(10, 14, 24, 0.7);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     cursor: pointer;
     animation: promoFadeIn 0.25s ease forwards;
 }
@@ -2389,15 +2353,16 @@ img {
 .sewa-card {
     position: relative;
     background: #ffffff !important;
-    border-radius: 22px;
+    border-radius: 24px;
     width: 100%;
-    max-width: 820px;
-    box-shadow: 0 25px 60px -12px rgba(0, 0, 0, 0.4);
+    max-width: 860px;
+    max-height: calc(100vh - 48px);
+    overflow-y: auto;
+    box-shadow: 0 30px 80px -20px rgba(0, 0, 0, 0.5);
     display: grid;
-    grid-template-columns: 1fr 1.15fr;
-    overflow: hidden;
+    grid-template-columns: 0.95fr 1.05fr;
     z-index: 2;
-    animation: promoPopUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: promoPopUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 @keyframes promoFadeIn {
@@ -2406,36 +2371,36 @@ img {
 }
 
 @keyframes promoPopUp {
-    from { transform: scale(0.96) translateY(10px); }
-    to { transform: scale(1) translateY(0); }
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .sewa-close {
     position: absolute;
     top: 18px;
     right: 18px;
-    width: 32px;
-    height: 32px;
+    width: 34px;
+    height: 34px;
     border-radius: 50%;
-    background: #f1f5f9;
-    border: none;
-    color: #64748b;
+    background: #ffffff;
+    border: 1px solid rgba(26, 35, 65, 0.12);
+    color: #1a2341;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.2s ease;
+    transition: border-color 0.2s ease, color 0.2s ease;
     z-index: 10;
 }
 
 .sewa-close:hover {
-    background: #e2e8f0;
-    color: #0f172a;
+    border-color: #ff6348;
+    color: #ff6348;
 }
 
 .sewa-visual {
-    background: #ffffff;
-    padding: 28px 16px 28px 28px;
+    background: #f5f5f7;
+    padding: 40px 28px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2444,167 +2409,195 @@ img {
 .sewa-img {
     width: 100%;
     height: auto;
-    max-height: 320px;
+    max-height: 300px;
     object-fit: contain;
     display: block;
 }
 
 .sewa-body {
-    padding: 44px 44px 36px 12px;
+    padding: 48px 44px 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: #ffffff;
+    align-items: flex-start;
 }
 
 .sewa-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
     font-family: 'Inter', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    color: #0284c7;
-    margin-bottom: 8px;
+    color: #ff6348;
+    margin-bottom: 14px;
+}
+
+.sewa-eyebrow::after {
+    content: '';
+    width: 28px;
+    height: 1px;
+    background: #ff6348;
+    opacity: 0.35;
 }
 
 .sewa-title {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Playfair Display', serif;
     font-size: 2rem;
     font-weight: 700;
-    color: #0f172a;
-    line-height: 1.18;
-    margin-bottom: 12px;
-    letter-spacing: -0.01em;
+    color: #1a2341;
+    line-height: 1.15;
+    margin-bottom: 14px;
 }
 
 .sewa-summary {
     font-family: 'Inter', sans-serif;
-    font-size: 0.88rem;
-    line-height: 1.6;
-    color: #475569;
-    margin-bottom: 22px;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: rgba(26, 35, 65, 0.6);
+    margin-bottom: 24px;
 }
 
 .sewa-prizes {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    border-radius: 12px;
-    padding: 14px 20px;
-    margin-bottom: 14px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    border-top: 1px solid rgba(26, 35, 65, 0.1);
+    border-bottom: 1px solid rgba(26, 35, 65, 0.1);
+    margin-bottom: 18px;
 }
 
 .prize-entry {
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
+    padding: 14px 0 14px 16px;
+    border-left: 1px solid rgba(26, 35, 65, 0.08);
+}
+
+.prize-entry:first-child {
+    border-left: none;
+    padding-left: 0;
 }
 
 .prize-num {
     font-family: 'Inter', sans-serif;
-    font-size: 1.15rem;
+    font-size: 1.2rem;
     font-weight: 700;
-    color: #0f172a;
-    letter-spacing: -0.01em;
+    font-variant-numeric: lining-nums tabular-nums;
+    letter-spacing: -0.02em;
+    color: #1a2341;
+}
+
+.prize-entry:first-child .prize-num {
+    color: #ff6348;
 }
 
 .prize-lbl {
     font-family: 'Inter', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 500;
-    color: #64748b;
+    font-size: 0.66rem;
+    font-weight: 600;
+    color: rgba(26, 35, 65, 0.5);
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-top: 2px;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
 }
 
-.prize-sep {
-    width: 1px;
-    height: 28px;
-    background: #e2e8f0;
+.sewa-prizes .prize-sep {
+    display: none;
 }
 
 .sewa-deadline-note {
     font-family: 'Inter', sans-serif;
-    font-size: 0.82rem;
-    color: #64748b;
-    margin-bottom: 22px;
-    line-height: 1.5;
+    font-size: 0.84rem;
+    color: rgba(26, 35, 65, 0.6);
+    margin-bottom: 26px;
+    line-height: 1.6;
 }
 
 .sewa-deadline-note strong {
-    color: #0f172a;
+    color: #1a2341;
     font-weight: 600;
+}
+
+.sewa-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
 }
 
 .sewa-btn {
-    display: block;
-    width: 100%;
-    text-align: center;
-    background: #0284c7;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: #1a2341;
     color: #ffffff !important;
     font-family: 'Inter', sans-serif;
-    font-size: 0.92rem;
+    font-size: 0.88rem;
     font-weight: 600;
-    padding: 13px 20px;
-    border-radius: 10px;
+    padding: 14px 26px;
+    border-radius: 50px;
     text-decoration: none;
-    transition: background 0.2s ease;
+    transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.sewa-btn i {
+    font-size: 0.78rem;
+    transition: transform 0.25s ease;
 }
 
 .sewa-btn:hover {
-    background: #0369a1;
-    color: #ffffff !important;
+    background: #ff6348;
+    transform: translateY(-2px);
+}
+
+.sewa-btn:hover i {
+    transform: translateX(3px);
 }
 
 .sewa-secondary-link {
-    display: inline-block;
-    margin-top: 12px;
     font-family: 'Inter', sans-serif;
-    font-size: 0.82rem;
-    font-weight: 500;
-    color: #0284c7 !important;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: #1a2341 !important;
     text-decoration: none;
+    padding-bottom: 2px;
+    border-bottom: 1px solid rgba(26, 35, 65, 0.25);
+    transition: color 0.25s ease, border-color 0.25s ease;
 }
 
 .sewa-secondary-link:hover {
-    text-decoration: underline;
+    color: #ff6348 !important;
+    border-color: #ff6348;
 }
 
 .sewa-dismiss {
-    margin-top: 18px;
+    margin-top: 22px;
     background: none;
     border: none;
     font-family: 'Inter', sans-serif;
-    font-size: 0.82rem;
-    color: #94a3b8;
+    font-size: 0.8rem;
+    color: rgba(26, 35, 65, 0.4);
     cursor: pointer;
-    text-align: left;
     padding: 0;
     transition: color 0.2s ease;
 }
 
 .sewa-dismiss:hover {
-    color: #475569;
+    color: #1a2341;
 }
 
 @media (max-width: 768px) {
     .promo-modal {
         padding: 16px;
-        align-items: center;
-        justify-content: center;
     }
 
     .sewa-card {
         grid-template-columns: 1fr;
-        width: 100%;
-        max-width: 350px;
-        margin: auto;
-        border-radius: 22px;
-        box-sizing: border-box;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
-        text-align: center;
+        max-width: 380px;
+        border-radius: 20px;
     }
 
     .sewa-close {
@@ -2612,104 +2605,73 @@ img {
         right: 12px;
         width: 32px;
         height: 32px;
-        background: #f1f5f9;
     }
 
     .sewa-visual {
-        padding: 22px 20px 6px;
-        justify-content: center;
+        padding: 24px 20px 16px;
     }
 
     .sewa-img {
-        max-height: 120px;
-        margin: 0 auto;
+        max-height: 130px;
     }
 
     .sewa-body {
-        padding: 4px 20px 20px;
-        align-items: center;
-        text-align: center;
+        padding: 22px 22px 24px;
     }
 
     .sewa-eyebrow {
-        font-size: 0.68rem;
-        letter-spacing: 1.2px;
-        margin-bottom: 4px;
-        display: inline-block;
+        font-size: 0.62rem;
+        letter-spacing: 2px;
+        margin-bottom: 10px;
     }
 
     .sewa-title {
-        font-size: 1.35rem;
-        line-height: 1.22;
-        margin-bottom: 8px;
-        text-align: center;
+        font-size: 1.45rem;
+        margin-bottom: 10px;
     }
 
     .sewa-summary {
-        font-size: 0.8rem;
-        line-height: 1.48;
-        margin-bottom: 12px;
-        text-align: center;
-        color: #475569;
-        max-width: 290px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .sewa-prizes {
-        width: 100%;
-        padding: 10px 12px;
-        margin-bottom: 12px;
-        border-radius: 12px;
-        background: #f8fafc;
-        border: 1px solid #e2e8f0;
-        justify-content: space-around;
-        box-sizing: border-box;
+        font-size: 0.82rem;
+        line-height: 1.6;
+        margin-bottom: 18px;
     }
 
     .prize-entry {
-        text-align: center;
-        align-items: center;
+        padding: 12px 0 12px 12px;
     }
 
     .prize-num {
-        font-size: 0.95rem;
-        font-weight: 700;
+        font-size: 1rem;
     }
 
     .prize-lbl {
-        font-size: 0.62rem;
-        letter-spacing: 0.3px;
-        margin-top: 1px;
-    }
-
-    .prize-sep {
-        height: 22px;
+        font-size: 0.58rem;
+        letter-spacing: 1px;
     }
 
     .sewa-deadline-note {
-        font-size: 0.76rem;
-        margin-bottom: 14px;
-        text-align: center;
+        font-size: 0.78rem;
+        margin-bottom: 20px;
     }
 
     .deadline-extra {
         display: none;
     }
 
-    .sewa-btn {
+    .sewa-actions {
         width: 100%;
-        padding: 12px 18px;
-        font-size: 0.88rem;
-        border-radius: 12px;
-        box-sizing: border-box;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
+    }
+
+    .sewa-btn {
+        justify-content: center;
     }
 
     .sewa-secondary-link {
-        margin-top: 10px;
+        align-self: center;
         font-size: 0.8rem;
-        display: inline-block;
-        text-align: center;
     }
 
     .sewa-dismiss {

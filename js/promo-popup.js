@@ -8,8 +8,6 @@
         const dismissBtn = document.getElementById('promo-dismiss');
         const backdrop = document.getElementById('promo-backdrop');
 
-        const STORAGE_KEY = 'sewa_promo_seen';
-
         function openModal() {
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -18,25 +16,17 @@
         function closeModal() {
             modal.classList.remove('active');
             document.body.style.overflow = '';
-            try {
-                localStorage.setItem(STORAGE_KEY, 'true');
-            } catch (e) {}
         }
 
-        // Auto-open only once per user
-        let hasSeen = false;
+        // Clean up any legacy persistent flag from previous visits
         try {
-            hasSeen = localStorage.getItem(STORAGE_KEY) === 'true';
+            localStorage.removeItem('sewa_promo_seen');
         } catch (e) {}
 
-        if (!hasSeen) {
-            setTimeout(() => {
-                openModal();
-                try {
-                    localStorage.setItem(STORAGE_KEY, 'true');
-                } catch (e) {}
-            }, 800);
-        }
+        // Open automatically on every visit
+        setTimeout(() => {
+            openModal();
+        }, 800);
 
         if (closeBtn) closeBtn.addEventListener('click', closeModal);
         if (dismissBtn) dismissBtn.addEventListener('click', closeModal);

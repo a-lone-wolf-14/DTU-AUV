@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DTU AUV - Autonomous Underwater Vehicle</title>
     <link rel="icon" type="image/png" href="assets/images/logo-auv-favicon.png">
-    <link rel="stylesheet" href="css/styles.css?v=20261006i">
+    <link rel="stylesheet" href="css/styles.css?v=20261015a">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
@@ -326,9 +326,12 @@
         <div class="dive-container">
             <div class="dive-left anim-fade-up">
                 <h2 class="dive-title">DIVE INTO THE<br>DEEP</h2>
+                <p class="dive-desc">DTU AUV welcomes you to the forefront of subsea innovation. Witness how advanced software, custom embedded intelligence, and rugged mechanical design converge to conquer extreme underwater challenges and redefine marine robotics.</p>
             </div>
             <div class="dive-right anim-fade-up delay-2">
-                <p>DTU AUV welcomes you to the forefront of subsea innovation. Witness how advanced software, custom embedded intelligence, and rugged mechanical design converge to conquer extreme underwater challenges and redefine marine robotics. </p>
+                <a class="play-btn" id="dive-play-btn" aria-label="AUV Expedition">
+                    <i class="fas fa-play"></i>
+                </a>
             </div>
         </div>
     </section>
@@ -443,15 +446,17 @@
                     <div class="prize-entry"><span class="prize-num">₹1.0 Lakh</span><span class="prize-lbl">3rd Prize</span></div>
                 </div>
                 <p class="sewa-deadline-note">Registration closes on <strong>10th September</strong>.<span class="deadline-extra"> Open to school, college &amp; industry teams.</span></p>
-                <a href="https://sewafirstryic.dtu.ac.in/signin" target="_blank" rel="noopener noreferrer" class="sewa-btn">Register for Challenge</a>
-                <a href="https://sewafirstryic.dtu.ac.in/problem-statements" target="_blank" rel="noopener noreferrer" class="sewa-secondary-link">Problem Statements &amp; Guidelines &rarr;</a>
+                <div class="sewa-actions">
+                    <a href="https://sewafirstryic.dtu.ac.in/signin" target="_blank" rel="noopener noreferrer" class="sewa-btn">Register for Challenge <i class="fas fa-arrow-right"></i></a>
+                    <a href="https://sewafirstryic.dtu.ac.in/problem-statements" target="_blank" rel="noopener noreferrer" class="sewa-secondary-link">Problem Statements &amp; Guidelines &rarr;</a>
+                </div>
                 <button class="sewa-dismiss" id="promo-dismiss">No, thanks</button>
             </div>
         </div>
     </div>
 
-    <script src="js/script.js?v=20261004c"></script>
+    <script src="js/script.js?v=20261015a"></script>
     <script src="js/services-carousel.js?v=20261004c"></script>
-    <script src="js/promo-popup.js?v=20261006a"></script>
+    <script src="js/promo-popup.js?v=20261015a"></script>
 </body>
 </html>

@@ -98,7 +98,7 @@ const TEAM_MEMBERS = [
   {
     id: "suraj-jaiswal",
     name: "Suraj Jaiswal",
-    role: "Design & Media Lead",
+    role: "Design & Media Co-Lead",
     email: "email@few.io",
     image: "assets/images/Team Members/Design & Media/Suraj.jpg"
   },
@@ -220,6 +220,34 @@ const TEAM_MEMBERS = [
     role: "Software Executive",
     email: "email@few.io",
     image: "assets/images/Team Members/Software/Shrey.webp"
+  },
+  {
+    id: "sourav-kumar",
+    name: "Sourav Kumar",
+    role: "Corporate Executive",
+    email: "email@few.io",
+    image: "assets/images/Team Members/Corporate/Sourav.webp"
+  },
+  {
+    id: "anoushka-jha",
+    name: "Anoushka Jha",
+    role: "Corporate Executive",
+    email: "email@few.io",
+    image: "assets/images/Team Members/Corporate/Anoushka.webp"
+  },
+  {
+    id: "hardik-gupta",
+    name: "Hardik Gupta",
+    role: "Corporate Executive",
+    email: "email@few.io",
+    image: "assets/images/Team Members/Corporate/Hardik.webp"
+  },
+  {
+    id: "muaz-khan",
+    name: "Muaz Khan",
+    role: "Corporate Executive",
+    email: "email@few.io",
+    image: "assets/images/Team Members/Corporate/Muaz.webp"
   },
   /* ---- Add new members below this line ----
 
