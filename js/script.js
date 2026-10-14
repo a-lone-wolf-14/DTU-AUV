@@ -431,11 +431,7 @@ if (heroTitle) {
 
     function setUnavailable() {
         btn.classList.add('is-offline');
-        btn.style.pointerEvents = 'none';
-        btn.style.opacity = '0.4';
-        btn.style.cursor = 'not-allowed';
         btn.removeAttribute('href');
-        btn.textContent = 'Unavailable';
     }
 
     try {
