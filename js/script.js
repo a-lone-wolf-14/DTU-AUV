@@ -424,53 +424,10 @@ if (heroTitle) {
     titleObserver.observe(heroTitle);
 }
 
-// ========== PLAY BTN AUV EXPEDITION LIVE STATUS CHECK ==========
-(async function() {
-    const btn = document.querySelector('#dive-play-btn') || document.querySelector('.play-btn');
-    if (!btn) return;
-
-    function setUnavailable() {
-        btn.classList.add('is-offline');
-        btn.removeAttribute('href');
-    }
-
-    try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 4000);
-
-        const res = await fetch('https://auv.bot.nu/api/ping', {
-            signal: controller.signal,
-            cache: 'no-store'
-        });
-        clearTimeout(timeoutId);
-
-        if (!res.ok) {
-            setUnavailable();
-            return;
-        }
-
-        const data = await res.json();
-        if (data && data.a === 't') {
-            btn.setAttribute('href', 'https://auv.bot.nu');
-            btn.setAttribute('target', '_blank');
-            btn.setAttribute('rel', 'noopener noreferrer');
-        } else {
-            setUnavailable();
-        }
-    } catch (e) {
-        // Fallback: If no response or network fails, no redirection
-        setUnavailable();
-    }
-})();
-
 // ========== PLAY BTN RIPPLE EFFECT ==========
 const playBtn = document.querySelector('.play-btn');
 if (playBtn) {
     playBtn.addEventListener('click', function (e) {
-        if (!this.getAttribute('href') || this.style.pointerEvents === 'none' || this.classList.contains('is-offline')) {
-            e.preventDefault();
-            return;
-        }
         const ripple = document.createElement('span');
         ripple.style.position = 'absolute';
         ripple.style.width = '100%';
