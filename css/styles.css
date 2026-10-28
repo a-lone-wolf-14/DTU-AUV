@@ -1474,6 +1474,7 @@ img {
 
 /* ========== DIVE / CTA SECTION ========== */
 .dive-section {
+    scroll-margin-top: 70px;
     position: relative;
     min-height: 600px;
     display: flex;
